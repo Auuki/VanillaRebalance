@@ -32,6 +32,7 @@ namespace VanillaRebalance
 
         //Common/White
         public static ConfigEntry<bool> BisonSteakRebalance;
+        public static ConfigEntry<bool> BundleOfFireworksRebalance;
         public static ConfigEntry<bool> BustlingFungusRebalance;
         public static ConfigEntry<bool> FocusCrystalRebalance;
         public static ConfigEntry<bool> StickyBombRebalance;
@@ -44,11 +45,12 @@ namespace VanillaRebalance
         public static ConfigEntry<bool> PredatoryInstinctsRebalance;
         public static ConfigEntry<bool> RazorwireRebalance;
         public static ConfigEntry<bool> RunaldsBandRebalance;
-        public static ConfigEntry<bool> SquidPolypRebalance;
+        //public static ConfigEntry<bool> SquidPolypRebalance;
         public static ConfigEntry<bool> UkuleleRebalance;
         //public static ConfigEntry<bool> WaxQuailRebalance;
 
         //Legendary/Red
+        public static ConfigEntry<bool> BrilliantBehemothRebalance;
 
         //Boss/Yellow
         public static ConfigEntry<bool> MiredUrnRebalance;
@@ -64,7 +66,7 @@ namespace VanillaRebalance
         public static ConfigEntry<bool> PolyluteRebalance;
 
         //Equipment/Orange
-        public static ConfigEntry<bool> JadeElephantRebalance;
+        //public static ConfigEntry<bool> JadeElephantRebalance;
         public static ConfigEntry<bool> VolcanicEggRebalance;
 
         //Monsters
@@ -154,6 +156,9 @@ namespace VanillaRebalance
             //Common/White
             if (BisonSteakRebalance.Value)
                 Items.BisonSteak.Changes();
+            if (BundleOfFireworksRebalance.Value)
+                Items.BundleOfFireworks.Changes();
+                //Items.SquidPolyp.Changes();
             if (BustlingFungusRebalance.Value)
                 Items.BustlingFungus.Changes();
             if (FocusCrystalRebalance.Value)
@@ -187,6 +192,10 @@ namespace VanillaRebalance
             //Items.SquidPolyp.Changes();
 
             //Legendary/Red
+            if (BrilliantBehemothRebalance.Value)
+            {
+                Items.BrilliantBehemoth.Changes();
+            }
 
             //Boss/Yellow
             if (MiredUrnRebalance.Value)
@@ -194,6 +203,7 @@ namespace VanillaRebalance
                 SiphonNearbyController cBodyMiredUrn;
                 cBodyMiredUrn = GetMiredUrn(SurvivorPrefabs.MiredUrn);
                 SetMiredUrn(cBodyMiredUrn, 12);
+                Items.MiredUrn.Changes();
             }
             if (ShatterspleenRebalance.Value)
                 Items.Shatterspleen.Changes();
@@ -213,21 +223,22 @@ namespace VanillaRebalance
                 Items.Polylute.Changes();
 
             //Equipment/Orange
-            if (JadeElephantRebalance.Value)
-                Items.JadeElephant.Changes();
+            /*if (JadeElephantRebalance.Value)
+                Items.JadeElephant.Changes();*/
             if (VolcanicEggRebalance.Value)
             {
                 FireballVehicle cBodyVolcanicEgg;
                 cBodyVolcanicEgg = GetFireballVehicle(SurvivorPrefabs.VolcanicEgg);
                 SetVolcanicEgg(cBodyVolcanicEgg, 10f);
+                Items.VolcanicEgg.Changes();
             }
 
             // This line of log will appear in the bepinex console when the Awake method is done.
-            Log.LogInfo(nameof(Awake) + "Done.");
+            //Log.LogInfo(nameof(Awake) + "Done.");
         }
 
         //The Update() method is run on every frame of the game.
-        private void Update()
+        /*private void Update()
         {
             //This if statement checks if the player has currently pressed F2.
             if (Input.GetKeyDown(KeyCode.F2))
@@ -248,7 +259,7 @@ namespace VanillaRebalance
                 Log.LogInfo($"Player pressed F3. Spawning our custom item at coordinates {transform.position}");
                 PickupDropletController.CreatePickupDroplet(PickupCatalog.FindPickupIndex("ItemIndex.CritGlasses"), transform.position, transform.forward * 20f);
             }
-        }
+        }*/
 
         static class SurvivorPrefabs
         {
@@ -322,6 +333,7 @@ namespace VanillaRebalance
         {
             //Common/White
             BisonSteakRebalance = Config.Bind<bool>(new ConfigDefinition("BisonSteak", "Enable Changes"), true, new ConfigDescription("Enables changes to Bison Steak.", null, Array.Empty<object>()));
+            BundleOfFireworksRebalance = Config.Bind<bool>(new ConfigDefinition("BundleOfFireworks", "Enable Changes"), true, new ConfigDescription("Enables changes to Bundle of Fireworks.", null, Array.Empty<object>()));
             BustlingFungusRebalance = Config.Bind<bool>(new ConfigDefinition("BustlingFungus", "Enable Changes"), true, new ConfigDescription("Enables changes to Bustling Fungus.", null, Array.Empty<object>()));
             FocusCrystalRebalance = Config.Bind<bool>(new ConfigDefinition("BustlingFungus", "Enable Changes"), true, new ConfigDescription("Enables changes to Bustling Fungus.", null, Array.Empty<object>()));
             StickyBombRebalance = Config.Bind<bool>(new ConfigDefinition("FocusCrystal", "Enable Changes"), true, new ConfigDescription("Enables changes to Focus Crystal.", null, Array.Empty<object>()));
@@ -338,6 +350,7 @@ namespace VanillaRebalance
             //WaxQuailRebalance = Config.Bind<bool>(new ConfigDefinition("WaxQuail", "Enable Changes"), true, new ConfigDescription("Enables changes to Wax Quail.", null, Array.Empty<object>()));
 
             //Legendary/Red
+            BrilliantBehemothRebalance = Config.Bind<bool>(new ConfigDefinition("BrilliantBehemoth", "Enable Changes"), true, new ConfigDescription("Enables changes to Brilliant Behemoth.", null, Array.Empty<object>()));
 
             //Boss/Yellow
             MiredUrnRebalance = Config.Bind<bool>(new ConfigDefinition("MiredUrn", "Enable Changes"), true, new ConfigDescription("Enables changes to Mired Urn.", null, Array.Empty<object>()));
@@ -353,7 +366,7 @@ namespace VanillaRebalance
             PolyluteRebalance = Config.Bind<bool>(new ConfigDefinition("Polylute", "Enable Changes"), true, new ConfigDescription("Enables changes to Polylute.", null, Array.Empty<object>()));
 
             //Equipment/Orange
-            JadeElephantRebalance = Config.Bind<bool>(new ConfigDefinition("JadeElephant", "Enable Changes"), true, new ConfigDescription("Enables changes to Jade Elephant.", null, Array.Empty<object>()));
+            //JadeElephantRebalance = Config.Bind<bool>(new ConfigDefinition("JadeElephant", "Enable Changes"), true, new ConfigDescription("Enables changes to Jade Elephant.", null, Array.Empty<object>()));
             VolcanicEggRebalance = Config.Bind<bool>(new ConfigDefinition("VolcanicEgg", "Enable Changes"), true, new ConfigDescription("Enables changes to Volcanic Egg.", null, Array.Empty<object>()));
 
             //Monsters

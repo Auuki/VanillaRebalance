@@ -1,4 +1,6 @@
-﻿using R2API;
+﻿using Mono.Cecil.Cil;
+using MonoMod.Cil;
+using R2API;
 
 namespace VanillaRebalance.Items
 {
@@ -6,20 +8,30 @@ namespace VanillaRebalance.Items
     {
         public static void Changes()
         {
-            /*IL.RoR2.GlobalEventManager.OnInteractionBegin += (il) =>
+            IL.RoR2.FireworkLauncher.FireMissile += (il) =>
             {
                 ILCursor ilcursor = new ILCursor(il);
                 ilcursor.GotoNext(
-                    //x => ILPatternMatchingExt.MatchLdsfld(x, "RoR2.RoR2Content/Items", "FlatHealth"),
-                    //x => ILPatternMatchingExt.MatchLdloc(x, 36),
-                    x => x.MatchLdloc(4),
-                    x => x.MatchLdloc()
+                    x => ILPatternMatchingExt.MatchLdfld(x, "RoR2.FireworkLauncher", "damageCoefficient")
                     );
-                ilcursor.Next.Operand = 30f;
-            };*/
+                ilcursor.Index++;
+                ilcursor.Emit(OpCodes.Ldc_R4, 1f);
+                ilcursor.Emit(OpCodes.Add);
+            };
 
-            string desc = string.Format("Increases <style=cIsHealing>maximum health</style> by <style=cIsHealing>30</style> <style=cStack>(+30 per stack)</style>.");
-            LanguageAPI.Add("ITEM_FIREWORKS_DESC", desc);
+            IL.RoR2.GlobalEventManager.OnInteractionBegin += (il) =>
+            {
+                ILCursor ilcursor = new ILCursor(il);
+                ilcursor.GotoNext(
+                    x => x.MatchStloc(8)
+                    );
+                ilcursor.Index++;
+                ilcursor.Remove();
+                ilcursor.Emit(OpCodes.Ldc_I4, 0);
+            };
+
+            string desc = string.Format("Activating an interactable <style=cIsDamage>launches 4</style> <style=cStack>(+4 per stack)</style> <style=cIsDamage>fireworks</style> that deal <style=cIsDamage>400%</style> base damage. ");
+            LanguageAPI.Add("ITEM_FIREWORK_DESC", desc);
         }
     }
 }

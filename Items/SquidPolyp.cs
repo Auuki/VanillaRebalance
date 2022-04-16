@@ -1,5 +1,4 @@
-﻿using Mono.Cecil.Cil;
-using MonoMod.Cil;
+﻿using MonoMod.Cil;
 using R2API;
 
 namespace VanillaRebalance.Items
@@ -16,9 +15,6 @@ namespace VanillaRebalance.Items
                     x => x.MatchDup()
                     );
                 ilcursor.Next.Operand = 300;
-                //Log.LogInfo(ilcursor.Next.Operand);
-                //ilcursor.Index += 3;
-                //Log.LogInfo(ilcursor.Next.Operand);
             };
 
             string desc = string.Format("Teleporters charge <style=cIsUtility>25%</style> <style=cStack>(+25% per stack)</style> <style=cIsUtility>faster</style>, but the size of the Teleporter zone is <style=cIsHealth>50%</style> <style=cStack>(-50% per stack)</style> smaller.");
