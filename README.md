@@ -11,12 +11,12 @@ VanillaRebalance aims at balancing vanilla without changing the effects of items
 	* *Currently Bison Steak gives less than 1 level worth of maximum health even on Huntress who has the lowest hp per level (27). Increasing the amount of maximum health gained will make it more useful early on and keep it reasonably useful at later stages. Anything higher than 30 would undermine Infusion.*
 
 **Bundle of Fireworks**
-* Activating an interactable launches ~~8~~ 4 (+4 per stack) fireworks that deal ~~300%~~ 400% base damage.
-	* *It's a nerf at less than 3 stacks but at early levels many fireworks go to waste anyway cause of lack of enemies. Change helps with scaling at higehr stacks which was very underwhelming.*
+* Activating an interactable launches ~~8~~ 5 (+5 per stack) fireworks that deal ~~300%~~ 360% base damage.
+	* *It's a nerf at less than 2 stacks but at early levels many fireworks go to waste anyway cause of lack of enemies. Change helps with scaling at higher stacks which was very underwhelming.*
 
 **Bustling Fungus**
 * After standing still for 1 second, create a zone that heals for ~~4.5%~~ 4% (+~~2.25%~~ 2% per stack) of your health every second to all allies within ~~3.5m~~ 4m (+~~1.5m~~ 2m per stack).
-	* *Fungus healing is quite powerful. It's always good to have at least one fungus in case of an emergency. That's why it got nerfed. AoE on the other hand got buffed to help with the shared healing aspect of the Fungus. This should allow for easier healing of allies, especially drones, as well as better positioning of Mercenary's Turrets.*
+	* *Fungus healing is quite powerful. It's always good to have at least one fungus in case of an emergency. That's why it got nerfed. AoE on the other hand got buffed to help with the shared healing aspect of the Fungus. This should allow for easier healing of allies, especially drones, as well as better positioning of Engineer's Turrets.*
 
 **Focus Crystal**
 * Increase damage to enemies within ~~13m~~ 12m by 20% (+20% per stack).
@@ -52,10 +52,15 @@ VanillaRebalance aims at balancing vanilla without changing the effects of items
 
 **Runald's Band**
 * Hits that deal more than 400% damage also blast enemies with a runic ice blast, slowing them by 80% for 3s (+3s per stack) and dealing ~~250%~~ 200% (+~~250%~~ 200% per stack) TOTAL damage. Recharges every 10 seconds.
+	* *Bands are overpowered, especially on Loader. Runald's Band got nerfed less as it's the less powerful out of the two.*
 
 **Ukulele**
 * ~~25%~~ 20% chance to fire chain lightning for 80% TOTAL damage on up to 3 (+2 per stack) targets within 20m (+2m per stack).
 	* *Ukulele is very strong, I'd consider decreasing the damage but 25% chance to trigger is very high so lets start there. This way it also matches Sentient Meat Hook's listed base chance (cause in reality it's 16,7%).*
+
+**Wax Quail**
+* Jumping while sprinting boosts you forward by ~~10m~~ 14m (+~~10m~~ 7m per stack).
+	* *Just a few Wax Quails (even less with other movement speed increasing items) are enough for jumping while sprinting to get out of hand. Oftentimes people don't want to pick them at stacks even as low as around 5. Initial Wax Quail usually doesn't help too much hence the buff to initial value. Stacking nerf kicks in at 3 and above, making it more manageable while keeping it useful. Values were chosen based on the base movement speed of survivors, which is 7m/s.*
 
 **Brilliant Behemoth**
 * All your attacks explode in a 4m (+~~2.5m~~ 2m per stack) radius for a bonus 60% TOTAL damage to nearby enemies.
@@ -99,11 +104,25 @@ VanillaRebalance aims at balancing vanilla without changing the effects of items
 **Brass Contraption**
 * Nerfed damage from 10 (+2 per level) to 9 (+1.8 per level)
 	* *This is a temporary overnerf until I'll figure out how to change the damage % of the balls.*
-	
+
 **Elder Lemurian**
 * Nerfed health from 900 (+270 per level) to 800 (+240 per level)
 * Nerfed movement speed from 13 m/s to 12 m/s
+	* *A total beast with high damage, health and movement speed hence the nerf.*
 
 **Greater Wisp**
 * Nerfed health from 750 (+250 per level) to 700 (+210 per level)
 	* *Greater Wisps have surprisingly high health. Slight nerf will put them more in line with other enemies while still keeping them quite tanky.*
+
+## Changelog
+
+**1.0.2**
+* Fixed the description of Polylute
+* Changed the rebalance of Bundle of Fireworks
+* Rebalanced Wax Quail
+
+**1.0.1**
+* Removed Bundle of Fireworks change temporarily
+
+**1.0.0**
+* Release
