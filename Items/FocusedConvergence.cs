@@ -19,7 +19,7 @@ namespace VanillaRebalance.Items
 			};
 
 			string desc = string.Format("Teleporters charge <style=cIsUtility>25%</style> <style=cStack>(+25% per stack)</style> <style=cIsUtility>faster</style>, but the size of the Teleporter zone is <style=cIsHealth>50%</style> <style=cStack>(-50% per stack)</style> smaller.");
-			LanguageAPI.Add("ITEM_FOCUSCONVERGENCE_DESC", desc);
+			LanguageAPI.Add("ITEM_FOCUSEDCONVERGENCE_DESC", desc);
 		}
 	}
 }

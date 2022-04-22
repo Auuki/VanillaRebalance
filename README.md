@@ -87,13 +87,27 @@ VanillaRebalance aims at balancing vanilla without changing the effects of items
 * Reduce Equipment cooldown by ~~50%~~ 30% (+15% per stack). Forces your Equipment to activate whenever it is off cooldown.
 	* *Gesture of the Drowned is very powerful while its downside is usually sought after. Initial cooldown reduction is extreme but the downside is weak so it requires a nerf.*
 
-**Needletick**
-* 10% (+10% per stack) chance to collapse an enemy for ~~400%~~ 300% base damage. Corrupts all Tri-Tip Daggers.
-	* *Makes it less of a no-brainer upgrade to Tri-Tip Daggers as well as helps with Collapse debuff oftentimes demolishing players.*
-
 **Polylute**
 * ~~25%~~ 20% chance to fire lightning for 60% TOTAL damage up to 3 (+3 per stack) times. Corrupts all Ukuleles.
 	* *Nerf to keep it closer to Ukulele.*
+
+**Singularity Band**
+* Hits that deal more than 400% damage also fire a black hole that draws enemies within ~~15m~~ 16m into its center. Lasts 5 seconds before collapsing, dealing 100% (+100% per stack) TOTAL damage. Recharges every 20 seconds. Corrupts all Runald's and Kjaro's Bands.
+	* *Currently it's a bit of a questionable choice but that is mainly because of regular bands being overpowered. Considering their nerf, Singularity Band should become a much more appealing choice. Range increase is there just because of the AoE unification.*
+
+**Gnarled Woodprite**
+* Increased cooldown from 15s to 20s.
+	* *15 seconds is an extremely low cooldown on a decent equipment. Nerfing the cooldown indirectly makes Blast Shower slightly more appealing for equipment on use effects.*
+
+**Gorag's Opus**
+* All allies enter a frenzy for ~~7~~ 8 seconds. Increases movement speed by 50% and attack speed by 100%.
+* Increased cooldown from 45s to 60s.
+	* *Makes it match other equipment and synergize better with War Horn. Cooldown nerf is supposed to balance it out and make it slightly harder to achieve permanent effect. It's worth noting that it will become slightly harder to make the effect permanent thanks to Gesture of the Drowned nerf.*
+
+**Jade Elephant**
+* Gain ~~500~~ 200 armor for ~~5~~ 8 seconds.
+* Increased cooldown from 45s to 60s.
+	* *Jade Elephant has two issues - duration being low and effect being extremely potent. Increasing duration makes it more interesting to most players than just something they use in extreme situations. To compensate, the cooldown was increased but it still ends up as a buff (Fuel Cell amount required to make the effect permanent is lowered from 14 to 13). Now that's another issue - the effect is crazily good when permanent/almost permanent. That's why armor gained was nerfed and while numerically it seems like a big nerf, it only decreases damage reduction from 83.33% to 66.67%. This keeps it useful, fits the more broad use scenario and nerfs the permanent edge case.*
 
 **Volcanic Egg**
 * Turn into a draconic fireball for 5 seconds. Deal 500% damage on impact. Detonates at the end for ~~800%~~ 1000% damage.
@@ -115,6 +129,12 @@ VanillaRebalance aims at balancing vanilla without changing the effects of items
 	* *Greater Wisps have surprisingly high health. Slight nerf will put them more in line with other enemies while still keeping them quite tanky.*
 
 ## Changelog
+
+**1.0.3**
+* Rewrote a lot of code, should be much easier to understand and probably better optimized
+* Removed Needletick rebalance
+* Rebalanced Jade Elephant, Gnarled Woodsprite, Gorag's Opus and Singularity Band
+* Fixed some descriptions
 
 **1.0.2**
 * Fixed the description of Polylute

@@ -2,10 +2,7 @@ using BepInEx;
 using BepInEx.Configuration;
 using R2API;
 using R2API.Utils;
-using RoR2;
 using System;
-using System.Collections.Generic;
-using UnityEngine;
 
 namespace VanillaRebalance
 {
@@ -28,7 +25,7 @@ namespace VanillaRebalance
 		public const string PluginGUID = PluginAuthor + "." + PluginName;
 		public const string PluginAuthor = "Hayaku";
 		public const string PluginName = "VanillaRebalance";
-		public const string PluginVersion = "1.0.0";
+		public const string PluginVersion = "1.0.3";
 
 		//Common/White
 		public static ConfigEntry<bool> BisonSteakRebalance;
@@ -62,68 +59,20 @@ namespace VanillaRebalance
 		public static ConfigEntry<bool> GestureOfTheDrownedRebalance;
 
 		//Void/Purple
-		public static ConfigEntry<bool> NeedletickRebalance;
+		//public static ConfigEntry<bool> NeedletickRebalance;
 		public static ConfigEntry<bool> PolyluteRebalance;
+		public static ConfigEntry<bool> SingularityBandRebalance;
 
 		//Equipment/Orange
-		//public static ConfigEntry<bool> JadeElephantRebalance;
+		public static ConfigEntry<bool> GnarledWoodspriteRebalance;
+		public static ConfigEntry<bool> GoragsOpusRebalance;
+		public static ConfigEntry<bool> JadeElephantRebalance;
 		public static ConfigEntry<bool> VolcanicEggRebalance;
 
 		//Monsters
 		public static ConfigEntry<bool> BrassContraptionRebalance;
 		public static ConfigEntry<bool> ElderLemurianRebalance;
 		public static ConfigEntry<bool> GreaterWispRebalance;
-
-		void SetSurvivorStats(string survivorPrefab, Dictionary<string, float> dict)
-		{
-			CharacterBody component = Resources.Load<GameObject>(survivorPrefab).GetComponent<CharacterBody>();
-			foreach (var item in dict)
-			{
-				component.SetFieldValue<float>(item.Key, item.Value);
-			}
-		}
-
-		void SetSurvivorHealth(CharacterBody body, float value)
-		{
-			body.SetFieldValue<float>(SurvivorStat.baseMaxHealth, value);
-			body.SetFieldValue<float>(SurvivorStat.levelMaxHealth, value * 0.3f);
-		}
-		void SetSurvivorRegen(CharacterBody body, float value)
-		{
-			body.SetFieldValue<float>(SurvivorStat.baseRegen, value);
-			body.SetFieldValue<float>(SurvivorStat.levelRegen, value * 0.2f);
-		}
-		void SetSurvivorDamage(CharacterBody body, float value)
-		{
-			body.SetFieldValue<float>(SurvivorStat.baseDamage, value);
-			body.SetFieldValue<float>(SurvivorStat.levelDamage, value * 0.2f);
-		}
-		void SetMiredUrn(SiphonNearbyController body, float value)
-		{
-			body.SetFieldValue<float>(SurvivorStat.radius, value);
-		}
-		void SetStickyBomb(RoR2.Projectile.ProjectileImpactExplosion body, float value)
-		{
-			body.SetFieldValue<float>(SurvivorStat.blastRadius, value);
-		}
-		void SetVolcanicEgg(FireballVehicle body, float value)
-		{
-			body.SetFieldValue<float>(SurvivorStat.blastDamageCoefficient, value);
-		}
-		void SetSurvivorMoveSpeed(CharacterBody body, float value)
-		{
-			body.SetFieldValue<float>(SurvivorStat.baseMoveSpeed, value);
-			body.SetFieldValue<float>(SurvivorStat.levelMoveSpeed, value * 0.05f);
-		}
-		void SetMonsterMoveSpeed(CharacterBody body, float value)
-		{
-			body.SetFieldValue<float>(SurvivorStat.baseMoveSpeed, value);
-		}
-		void SetSurvivorArmor(CharacterBody body, float value)
-		{
-			body.SetFieldValue<float>(SurvivorStat.baseArmor, value);
-			body.SetFieldValue<float>(SurvivorStat.levelArmor, value * 0.1f);
-		}
 
 		//The Awake() method is run at the very start when the game is initialized.
 		public void Awake()
@@ -132,43 +81,18 @@ namespace VanillaRebalance
 			Log.Init(Logger);
 
 			ReadConfig();
-			CharacterBody cBody;
-
-			if (BrassContraptionRebalance.Value)
-			{
-				cBody = GetCharacterBody(SurvivorPrefabs.BrassContraption);
-				SetSurvivorDamage(cBody, 2f);
-			}
-
-			if (ElderLemurianRebalance.Value)
-			{
-				cBody = GetCharacterBody(SurvivorPrefabs.ElderLemurian);
-				SetSurvivorHealth(cBody, 800f);
-				SetMonsterMoveSpeed(cBody, 12f);
-			}
-
-			if (GreaterWispRebalance.Value)
-			{
-				cBody = GetCharacterBody(SurvivorPrefabs.GreaterWisp);
-				SetSurvivorHealth(cBody, 700f);
-			}
 
 			//Common/White
 			if (BisonSteakRebalance.Value)
 				Items.BisonSteak.Changes();
 			if (BundleOfFireworksRebalance.Value)
 				Items.BundleOfFireworks.Changes();
-			//Items.SquidPolyp.Changes();
 			if (BustlingFungusRebalance.Value)
 				Items.BustlingFungus.Changes();
 			if (FocusCrystalRebalance.Value)
 				Items.FocusCrystal.Changes();
 			if (StickyBombRebalance.Value)
-			{
-				RoR2.Projectile.ProjectileImpactExplosion cBodyStickyBomb;
-				cBodyStickyBomb = GetStickyBomb(SurvivorPrefabs.StickyBomb);
-				SetStickyBomb(cBodyStickyBomb, 12f);
-			}
+				Items.StickyBomb.Changes();
 			if (TougherTimesRebalance.Value)
 				Items.TougherTimes.Changes();
 
@@ -185,26 +109,20 @@ namespace VanillaRebalance
 				Items.Razorwire.Changes();
 			if (RunaldsBandRebalance.Value)
 				Items.RunaldsBand.Changes();
+			//if (SquidPolypRebalance.Value)
+				//Items.SquidPolyp.Changes();
 			if (UkuleleRebalance.Value)
 				Items.Ukulele.Changes();
 			if (WaxQuailRebalance.Value)
 				Items.WaxQuail.Changes();
-			//Items.SquidPolyp.Changes();
 
 			//Legendary/Red
 			if (BrilliantBehemothRebalance.Value)
-			{
 				Items.BrilliantBehemoth.Changes();
-			}
 
 			//Boss/Yellow
 			if (MiredUrnRebalance.Value)
-			{
-				SiphonNearbyController cBodyMiredUrn;
-				cBodyMiredUrn = GetMiredUrn(SurvivorPrefabs.MiredUrn);
-				SetMiredUrn(cBodyMiredUrn, 12);
 				Items.MiredUrn.Changes();
-			}
 			if (ShatterspleenRebalance.Value)
 				Items.Shatterspleen.Changes();
 			if (TitanicKnurlRebalance.Value)
@@ -217,24 +135,30 @@ namespace VanillaRebalance
 				Items.GestureOfTheDrowned.Changes();
 
 			//Void/Purple
-			if (NeedletickRebalance.Value)
-				Items.Needletick.Changes();
+			//if (NeedletickRebalance.Value)
+				//Items.Needletick.Changes();
 			if (PolyluteRebalance.Value)
 				Items.Polylute.Changes();
+			if (SingularityBandRebalance.Value)
+				Items.SingularityBand.Changes();
 
 			//Equipment/Orange
-			/*if (JadeElephantRebalance.Value)
-                Items.JadeElephant.Changes();*/
+			if (GnarledWoodspriteRebalance.Value)
+				Items.GnarledWoodsprite.Changes();
+			if (GoragsOpusRebalance.Value)
+				Items.GoragsOpus.Changes();
+			if (JadeElephantRebalance.Value)
+                Items.JadeElephant.Changes();
 			if (VolcanicEggRebalance.Value)
-			{
-				FireballVehicle cBodyVolcanicEgg;
-				cBodyVolcanicEgg = GetFireballVehicle(SurvivorPrefabs.VolcanicEgg);
-				SetVolcanicEgg(cBodyVolcanicEgg, 10f);
 				Items.VolcanicEgg.Changes();
-			}
 
-			// This line of log will appear in the bepinex console when the Awake method is done.
-			//Log.LogInfo(nameof(Awake) + "Done.");
+			//Monsters
+			if (BrassContraptionRebalance.Value)
+				Monsters.BrassContraption.Changes();
+			if (ElderLemurianRebalance.Value)
+				Monsters.ElderLemurian.Changes();
+			if (GreaterWispRebalance.Value)
+				Monsters.GreaterWisp.Changes();
 		}
 
 		//The Update() method is run on every frame of the game.
@@ -250,84 +174,7 @@ namespace VanillaRebalance
                 Log.LogInfo($"Player pressed F2. Spawning our custom item at coordinates {transform.position}");
                 PickupDropletController.CreatePickupDroplet(PickupCatalog.FindPickupIndex("ItemIndex.Squid"), transform.position, transform.forward * 20f);
             }
-
-            //This if statement checks if the player has currently pressed F3.
-            if (Input.GetKeyDown(KeyCode.F3))
-            {
-                var transform = PlayerCharacterMasterController.instances[0].master.GetBodyObject().transform;
-
-                Log.LogInfo($"Player pressed F3. Spawning our custom item at coordinates {transform.position}");
-                PickupDropletController.CreatePickupDroplet(PickupCatalog.FindPickupIndex("ItemIndex.CritGlasses"), transform.position, transform.forward * 20f);
-            }
         }*/
-
-		static class SurvivorPrefabs
-		{
-			public const string
-			Acrid = "Prefabs/CharacterBodies/CrocoBody",
-			Artificer = "Prefabs/CharacterBodies/MageBody",
-			Bandit = "Prefabs/CharacterBodies/Bandit2Body",
-			Captain = "Prefabs/CharacterBodies/CaptainBody",
-			Commando = "Prefabs/CharacterBodies/CommandoBody",
-			Engineer = "Prefabs/CharacterBodies/EngiBody",
-			Huntress = "Prefabs/CharacterBodies/HuntressBody",
-			Loader = "Prefabs/CharacterBodies/LoaderBody",
-			Mercenary = "Prefabs/CharacterBodies/MercBody",
-			MULT = "Prefabs/CharacterBodies/ToolbotBody",
-			REX = "Prefabs/CharacterBodies/TreebotBody",
-
-			BrassContraption = "Prefabs/CharacterBodies/BellBody",
-			ElderLemurian = "Prefabs/CharacterBodies/LemurianBruiserBody",
-			GreaterWisp = "Prefabs/CharacterBodies/GreaterWispBody",
-
-			MiredUrn = "Prefabs/NetworkedObjects/BodyAttachments/SiphonNearbyBodyAttachment",
-			StickyBomb = "Prefabs/Projectiles/StickyBomb",
-			VolcanicEgg = "Prefabs/NetworkedObjects/FireballVehicle";
-		}
-
-		static class SurvivorStat
-		{
-			public const string
-			baseMaxHealth = "baseMaxHealth",
-			levelMaxHealth = "levelMaxHealth",
-			baseRegen = "baseRegen",
-			levelRegen = "levelRegen",
-			baseDamage = "baseDamage",
-			levelDamage = "levelDamage",
-			baseMoveSpeed = "baseMoveSpeed",
-			levelMoveSpeed = "levelMoveSpeed",
-			baseArmor = "baseArmor",
-			levelArmor = "levelArmor",
-			baseAttackSpeed = "baseAttackSpeed",
-			levelAttackSpeed = "levelAttackSpeed",
-			baseCrit = "baseCrit",
-			levelCrit = "levelCrit",
-			baseJumpPower = "baseJumpPower",
-			baseAcceleration = "baseAcceleration",
-
-			blastDamageCoefficient = "blastDamageCoefficient",
-			blastRadius = "blastRadius",
-			radius = "radius";
-		}
-
-		private CharacterBody GetCharacterBody(string prefabPath)
-		{
-			return Resources.Load<GameObject>(prefabPath).GetComponent<CharacterBody>();
-		}
-
-		private FireballVehicle GetFireballVehicle(string prefabPath)
-		{
-			return Resources.Load<GameObject>(prefabPath).GetComponent<FireballVehicle>();
-		}
-		private RoR2.SiphonNearbyController GetMiredUrn(string prefabPath)
-		{
-			return Resources.Load<GameObject>(prefabPath).GetComponent<RoR2.SiphonNearbyController>();
-		}
-
-		private RoR2.Projectile.ProjectileImpactExplosion GetStickyBomb(string prefabPath)
-		{
-			return Resources.Load<GameObject>(prefabPath).GetComponent<RoR2.Projectile.ProjectileImpactExplosion>();
-		}
 
 		public void ReadConfig()
 		{
@@ -346,6 +193,7 @@ namespace VanillaRebalance
 			PredatoryInstinctsRebalance = Config.Bind<bool>(new ConfigDefinition("PredatoryInstincts", "Enable Changes"), true, new ConfigDescription("Enables changes to Predatory Instincts.", null, Array.Empty<object>()));
 			RazorwireRebalance = Config.Bind<bool>(new ConfigDefinition("Razorwire", "Enable Changes"), true, new ConfigDescription("Enables changes to Razorwire.", null, Array.Empty<object>()));
 			RunaldsBandRebalance = Config.Bind<bool>(new ConfigDefinition("RunaldsBand", "Enable Changes"), true, new ConfigDescription("Enables changes to Runald's Band.", null, Array.Empty<object>()));
+			//SquidPolypRebalance = Config.Bind<bool>(new ConfigDefinition("SquidPolyp", "Enable Changes"), true, new ConfigDescription("Enables changes to Squid Polyp.", null, Array.Empty<object>()));
 			UkuleleRebalance = Config.Bind<bool>(new ConfigDefinition("Ukulele", "Enable Changes"), true, new ConfigDescription("Enables changes to Ukulele.", null, Array.Empty<object>()));
 			WaxQuailRebalance = Config.Bind<bool>(new ConfigDefinition("WaxQuail", "Enable Changes"), true, new ConfigDescription("Enables changes to Wax Quail.", null, Array.Empty<object>()));
 
@@ -362,11 +210,14 @@ namespace VanillaRebalance
 			GestureOfTheDrownedRebalance = Config.Bind<bool>(new ConfigDefinition("GestureOfTheDrowned", "Enable Changes"), true, new ConfigDescription("Enables changes to Gesture of the Drowned.", null, Array.Empty<object>()));
 
 			//Void/Purple
-			NeedletickRebalance = Config.Bind<bool>(new ConfigDefinition("Needletick", "Enable Changes"), true, new ConfigDescription("Enables changes to Needletick.", null, Array.Empty<object>()));
+			//NeedletickRebalance = Config.Bind<bool>(new ConfigDefinition("Needletick", "Enable Changes"), true, new ConfigDescription("Enables changes to Needletick.", null, Array.Empty<object>()));
 			PolyluteRebalance = Config.Bind<bool>(new ConfigDefinition("Polylute", "Enable Changes"), true, new ConfigDescription("Enables changes to Polylute.", null, Array.Empty<object>()));
+			SingularityBandRebalance = Config.Bind<bool>(new ConfigDefinition("SingularityBand", "Enable Changes"), true, new ConfigDescription("Enables changes to Singularity Band.", null, Array.Empty<object>()));
 
 			//Equipment/Orange
-			//JadeElephantRebalance = Config.Bind<bool>(new ConfigDefinition("JadeElephant", "Enable Changes"), true, new ConfigDescription("Enables changes to Jade Elephant.", null, Array.Empty<object>()));
+			GnarledWoodspriteRebalance = Config.Bind<bool>(new ConfigDefinition("GnarledWoodsprite", "Enable Changes"), true, new ConfigDescription("Enables changes to Gnarled Woodsprite.", null, Array.Empty<object>()));
+			GoragsOpusRebalance = Config.Bind<bool>(new ConfigDefinition("GoragsOpus", "Enable Changes"), true, new ConfigDescription("Enables changes to Gorag's Opus.", null, Array.Empty<object>()));
+			JadeElephantRebalance = Config.Bind<bool>(new ConfigDefinition("JadeElephant", "Enable Changes"), true, new ConfigDescription("Enables changes to Jade Elephant.", null, Array.Empty<object>()));
 			VolcanicEggRebalance = Config.Bind<bool>(new ConfigDefinition("VolcanicEgg", "Enable Changes"), true, new ConfigDescription("Enables changes to Volcanic Egg.", null, Array.Empty<object>()));
 
 			//Monsters

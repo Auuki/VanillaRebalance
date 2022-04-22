@@ -17,7 +17,7 @@ namespace VanillaRebalance.Items
 				ilcursor.Next.Operand = 2f;
 			};
 
-			string desc = string.Format("Hits that deal <style=cIsDamage>more than 400% damage</style> also blast enemies with a <style=cIsDamage>runic flame tornado</style>, dealing <style=cIsHealing>200%</style> <style=cStack>(+200% per stack)</style> TOTAL damage over time. Recharges every <style=cIsUtility>10</style> seconds.");
+			string desc = string.Format("Hits that deal <style=cIsDamage>more than 400% damage</style> also blast enemies with a <style=cIsDamage>runic flame tornado</style>, dealing <style=cIsDamage>200%</style> <style=cStack>(+200% per stack)</style> TOTAL damage over time. Recharges every <style=cIsUtility>10</style> seconds.");
 			LanguageAPI.Add("ITEM_FIRERING_DESC", desc);
 		}
 	}

@@ -1,5 +1,7 @@
 ﻿using MonoMod.Cil;
 using R2API;
+using RoR2;
+using UnityEngine.AddressableAssets;
 
 namespace VanillaRebalance.Items
 {
@@ -25,8 +27,11 @@ namespace VanillaRebalance.Items
 				ilcursor.Next.Operand = 200f;
 			};
 
-			string desc = string.Format("Gain <style=cIsDamage>500 armor</style> for <style=cIsUtility>8 seconds</style>.");
-			LanguageAPI.Add("ITEM_GAINARMOR_DESC", desc);
+			var JadeElephant = Addressables.LoadAssetAsync<EquipmentDef>("RoR2/Base/GainArmor/GainArmor.asset").WaitForCompletion();
+			JadeElephant.cooldown = 60f;
+
+			string desc = string.Format("Gain <style=cIsDamage>200 armor</style> for <style=cIsUtility>8 seconds</style>.");
+			LanguageAPI.Add("EQUIPMENT_GAINARMOR_DESC", desc);
 		}
 	}
 }

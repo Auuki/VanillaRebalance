@@ -23,7 +23,7 @@ namespace VanillaRebalance.Items
 			{
 				ILCursor ilcursor = new ILCursor(il);
 				ilcursor.GotoNext(
-					x => x.MatchStloc(8)
+					x => x.MatchStloc(9)
 					);
 				ilcursor.Index++;
 				ilcursor.Remove();
