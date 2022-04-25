@@ -25,7 +25,7 @@ namespace VanillaRebalance
 		public const string PluginGUID = PluginAuthor + "." + PluginName;
 		public const string PluginAuthor = "Hayaku";
 		public const string PluginName = "VanillaRebalance";
-		public const string PluginVersion = "1.0.3";
+		public const string PluginVersion = "1.0.5";
 
 		//Common/White
 		public static ConfigEntry<bool> BisonSteakRebalance;
@@ -36,18 +36,19 @@ namespace VanillaRebalance
 		public static ConfigEntry<bool> TougherTimesRebalance;
 
 		//Uncommon/Green
-		public static ConfigEntry<bool> AtGMissileMk1Rebalance;
+		//public static ConfigEntry<bool> AtGMissileMk1Rebalance;
 		public static ConfigEntry<bool> HarvestersScytheRebalance;
 		public static ConfigEntry<bool> KjarosBandRebalance;
 		public static ConfigEntry<bool> PredatoryInstinctsRebalance;
 		public static ConfigEntry<bool> RazorwireRebalance;
-		public static ConfigEntry<bool> RunaldsBandRebalance;
+		//public static ConfigEntry<bool> RunaldsBandRebalance;
 		//public static ConfigEntry<bool> SquidPolypRebalance;
 		public static ConfigEntry<bool> UkuleleRebalance;
 		public static ConfigEntry<bool> WaxQuailRebalance;
 
 		//Legendary/Red
 		public static ConfigEntry<bool> BrilliantBehemothRebalance;
+		public static ConfigEntry<bool> FrostRelicRebalance;
 
 		//Boss/Yellow
 		public static ConfigEntry<bool> MiredUrnRebalance;
@@ -97,8 +98,8 @@ namespace VanillaRebalance
 				Items.TougherTimes.Changes();
 
 			//Uncommon/Green
-			if (AtGMissileMk1Rebalance.Value)
-				Items.AtGMissileMk1.Changes();
+			//if (AtGMissileMk1Rebalance.Value)
+				//Items.AtGMissileMk1.Changes();
 			if (HarvestersScytheRebalance.Value)
 				Items.HarvestersScythe.Changes();
 			if (KjarosBandRebalance.Value)
@@ -107,8 +108,8 @@ namespace VanillaRebalance
 				Items.PredatoryInstincts.Changes();
 			if (RazorwireRebalance.Value)
 				Items.Razorwire.Changes();
-			if (RunaldsBandRebalance.Value)
-				Items.RunaldsBand.Changes();
+			//if (RunaldsBandRebalance.Value)
+				//Items.RunaldsBand.Changes();
 			//if (SquidPolypRebalance.Value)
 				//Items.SquidPolyp.Changes();
 			if (UkuleleRebalance.Value)
@@ -119,6 +120,8 @@ namespace VanillaRebalance
 			//Legendary/Red
 			if (BrilliantBehemothRebalance.Value)
 				Items.BrilliantBehemoth.Changes();
+			if (FrostRelicRebalance.Value)
+				Items.FrostRelic.Changes();
 
 			//Boss/Yellow
 			if (MiredUrnRebalance.Value)
@@ -187,18 +190,19 @@ namespace VanillaRebalance
 			TougherTimesRebalance = Config.Bind<bool>(new ConfigDefinition("TougherTimes", "Enable Changes"), true, new ConfigDescription("Enables changes to Tougher Times.", null, Array.Empty<object>()));
 
 			//Uncommon/Green
-			AtGMissileMk1Rebalance = Config.Bind<bool>(new ConfigDefinition("AtGMissileMk1", "Enable Changes"), true, new ConfigDescription("Enables changes to AtG Missile Mk. 1.", null, Array.Empty<object>()));
+			//AtGMissileMk1Rebalance = Config.Bind<bool>(new ConfigDefinition("AtGMissileMk1", "Enable Changes"), true, new ConfigDescription("Enables changes to AtG Missile Mk. 1.", null, Array.Empty<object>()));
 			HarvestersScytheRebalance = Config.Bind<bool>(new ConfigDefinition("HarvestersScythe", "Enable Changes"), true, new ConfigDescription("Enables changes to Harvester's Scythe.", null, Array.Empty<object>()));
 			KjarosBandRebalance = Config.Bind<bool>(new ConfigDefinition("KjarosBand", "Enable Changes"), true, new ConfigDescription("Enables changes to Kjaro's Band.", null, Array.Empty<object>()));
 			PredatoryInstinctsRebalance = Config.Bind<bool>(new ConfigDefinition("PredatoryInstincts", "Enable Changes"), true, new ConfigDescription("Enables changes to Predatory Instincts.", null, Array.Empty<object>()));
 			RazorwireRebalance = Config.Bind<bool>(new ConfigDefinition("Razorwire", "Enable Changes"), true, new ConfigDescription("Enables changes to Razorwire.", null, Array.Empty<object>()));
-			RunaldsBandRebalance = Config.Bind<bool>(new ConfigDefinition("RunaldsBand", "Enable Changes"), true, new ConfigDescription("Enables changes to Runald's Band.", null, Array.Empty<object>()));
+			//RunaldsBandRebalance = Config.Bind<bool>(new ConfigDefinition("RunaldsBand", "Enable Changes"), true, new ConfigDescription("Enables changes to Runald's Band.", null, Array.Empty<object>()));
 			//SquidPolypRebalance = Config.Bind<bool>(new ConfigDefinition("SquidPolyp", "Enable Changes"), true, new ConfigDescription("Enables changes to Squid Polyp.", null, Array.Empty<object>()));
 			UkuleleRebalance = Config.Bind<bool>(new ConfigDefinition("Ukulele", "Enable Changes"), true, new ConfigDescription("Enables changes to Ukulele.", null, Array.Empty<object>()));
 			WaxQuailRebalance = Config.Bind<bool>(new ConfigDefinition("WaxQuail", "Enable Changes"), true, new ConfigDescription("Enables changes to Wax Quail.", null, Array.Empty<object>()));
 
 			//Legendary/Red
 			BrilliantBehemothRebalance = Config.Bind<bool>(new ConfigDefinition("BrilliantBehemoth", "Enable Changes"), true, new ConfigDescription("Enables changes to Brilliant Behemoth.", null, Array.Empty<object>()));
+			FrostRelicRebalance = Config.Bind<bool>(new ConfigDefinition("FrostRelic", "Enable Changes"), true, new ConfigDescription("Enables changes to Frost Relic.", null, Array.Empty<object>()));
 
 			//Boss/Yellow
 			MiredUrnRebalance = Config.Bind<bool>(new ConfigDefinition("MiredUrn", "Enable Changes"), true, new ConfigDescription("Enables changes to Mired Urn.", null, Array.Empty<object>()));

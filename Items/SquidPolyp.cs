@@ -11,7 +11,7 @@ namespace VanillaRebalance.Items
 			{
 				ILCursor ilcursor = new ILCursor(il);
 				ilcursor.GotoNext(
-					x => x.MatchLdloc(11),
+					x => x.MatchLdloc(12),
 					x => x.MatchDup()
 					);
 				ilcursor.Next.Operand = 300;

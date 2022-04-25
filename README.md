@@ -30,17 +30,13 @@ VanillaRebalance aims at balancing vanilla without changing the effects of items
 * ~~13%~~ 10% (+~~13%~~ 10% per stack) chance to block incoming damage. Unaffected by luck.
 	* *Tougher Times is powerful for its rarity hence the nerf. The formula used is `1 - 1 / (1 + 0.15 * amount)` which rounds down to 13% with a single item if someone wonders why there's 13% instead of 15%.*
 
-**AtG Missile Mk. 1**
-* 10% chance to fire a missile that deals ~~300%~~ 200% (+~~300%~~ 200% per stack) TOTAL damage.
-	* *AtG is a bit similar to bands and just like them gets a nerf. While the tooltip damage is the same as bands after the nerf, AtG has a damage falloff and cannot be directed so oftentimes hits can go to waste on weak enemies.*
-
 **Harvester's Scythe**
 * Gain 5% critical chance. Critical strikes heal for ~~8~~ 4 (+4 per stack) health.
 	* *Heal nerf puts it more in line with Leeching Seed as the first Harvester's Scythe only requires 16% critical strike chance to outperform the seed (26% after the nerf).*
 
 **Kjaro's Band**
-* Hits that deal more than 400% damage also blast enemies with a runic flame tornado, dealing ~~300%~~ 200% (+~~300%~~ 200% per stack) TOTAL damage over time. Recharges every 10 seconds.
-	* *Bands are overpowered, especially on Loader. Kjaro's Band got nerfed harder because by constantly hitting for a period of time, it usually outdamages Runald's Band, especially while already dealing higher total damage.*
+* Hits that deal more than 400% damage also blast enemies with a runic flame tornado, dealing ~~300%~~ 250% (+~~300%~~ 250% per stack) TOTAL damage over time. Recharges every 10 seconds.
+	* *Kjaro's Band in most cases outdamages Runald's Band thanks to higher possible total damage and big AoE hence it was toned down.*
 
 **Predatory Instincts**
 * Gain 5% critical chance. Critical strikes increase attack speed by ~~12%~~ 10%. Maximum cap of ~~36%~~ 30% (+~~24%~~ 20% per stack) attack speed.
@@ -49,10 +45,6 @@ VanillaRebalance aims at balancing vanilla without changing the effects of items
 **Razorwire**
 * Getting hit causes you to explode in a burst of razors, dealing 160% damage. Hits up to ~~5~~ 3 (+2 per stack) targets in a ~~25m~~ 20m (+~~10m~~ 2m per stack) radius.
 	* *The radius is enormous so it was decreased together with the amount of targets, both to match the Ukulele.*
-
-**Runald's Band**
-* Hits that deal more than 400% damage also blast enemies with a runic ice blast, slowing them by 80% for 3s (+3s per stack) and dealing ~~250%~~ 200% (+~~250%~~ 200% per stack) TOTAL damage. Recharges every 10 seconds.
-	* *Bands are overpowered, especially on Loader. Runald's Band got nerfed less as it's the less powerful out of the two.*
 
 **Ukulele**
 * ~~25%~~ 20% chance to fire chain lightning for 80% TOTAL damage on up to 3 (+2 per stack) targets within 20m (+2m per stack).
@@ -65,6 +57,10 @@ VanillaRebalance aims at balancing vanilla without changing the effects of items
 **Brilliant Behemoth**
 * All your attacks explode in a 4m (+~~2.5m~~ 2m per stack) radius for a bonus 60% TOTAL damage to nearby enemies.
 	* *A small nerf based on AoE unification.*
+
+**Frost Relic**
+* Killing an enemy surrounds you with an ice storm that deals 300% damage every 0.25s and slows enemies by 80% for 1.5s. The storm grows with every kill, increasing its radius by ~~2m~~ 1m. Stacks up to ~~18m~~ 16m (+~~12m~~ 8m per stack).
+	* *Frost Relic used to be weak, but now it has become a bit too powerful. I don't think nerfing damage is a good idea as it was the main issue in the past so I've nerfed radius to match Warbanner, which is also a part of AoE unification. With a potential of such a big radius, once it reaches a certain size, it can easily fuel itself while also creating a lot of hits which create a lot of effects (although at low proc coefficient). Damage number change is just to better represent the actual behavior of the item. Initial radius increased from 6m to 8m but radius per kill decreased from 2m to 1m, otherwise it would end up as a buff.*
 
 **Mired Urn**
 * While in combat, the nearest 1 (+1 per stack) enemies to you within ~~13m~~ 12m will be 'tethered' to you, dealing 100% damage per second, applying tar, and healing you for 100% of the damage dealt.
@@ -129,6 +125,14 @@ VanillaRebalance aims at balancing vanilla without changing the effects of items
 	* *Greater Wisps have surprisingly high health. Slight nerf will put them more in line with other enemies while still keeping them quite tanky.*
 
 ## Changelog
+
+**1.0.5**
+* Removed AtG Missile Mk. 1 and Runald's Band rebalance
+* Changed the rebalance of Kjaro's Band
+* Rebalanced Frost Relic
+
+**1.0.4**
+* Added the missing README
 
 **1.0.3**
 * Rewrote a lot of code, should be much easier to understand and probably better optimized
