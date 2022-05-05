@@ -1,6 +1,9 @@
 ﻿using Mono.Cecil.Cil;
 using MonoMod.Cil;
 using R2API;
+using RoR2.Projectile;
+using UnityEngine;
+using UnityEngine.AddressableAssets;
 
 namespace VanillaRebalance.Items
 {
@@ -32,6 +35,9 @@ namespace VanillaRebalance.Items
 				ilcursor.Remove();
 				ilcursor.Emit(OpCodes.Ldc_I4, 5);
 			};
+
+			var BundleOfFireworks = Addressables.LoadAssetAsync<GameObject>("RoR2/Base/Firework/FireworkProjectile.prefab").WaitForCompletion();
+			BundleOfFireworks.GetComponent<ProjectileImpactExplosion>().blastRadius = 8f;
 
 			string desc = string.Format("Activating an interactable <style=cIsDamage>launches 5</style> <style=cStack>(+5 per stack)</style> <style=cIsDamage>fireworks</style> that deal <style=cIsDamage>360%</style> base damage.");
 			LanguageAPI.Add("ITEM_FIREWORK_DESC", desc);

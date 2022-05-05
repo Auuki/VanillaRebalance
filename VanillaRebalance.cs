@@ -25,7 +25,7 @@ namespace VanillaRebalance
 		public const string PluginGUID = PluginAuthor + "." + PluginName;
 		public const string PluginAuthor = "Hayaku";
 		public const string PluginName = "VanillaRebalance";
-		public const string PluginVersion = "1.0.5";
+		public const string PluginVersion = "1.0.6";
 
 		//Common/White
 		public static ConfigEntry<bool> BisonSteakRebalance;
@@ -49,6 +49,7 @@ namespace VanillaRebalance
 		//Legendary/Red
 		public static ConfigEntry<bool> BrilliantBehemothRebalance;
 		public static ConfigEntry<bool> FrostRelicRebalance;
+		public static ConfigEntry<bool> UnstableTeslaCoilRebalance;
 
 		//Boss/Yellow
 		public static ConfigEntry<bool> MiredUrnRebalance;
@@ -71,6 +72,7 @@ namespace VanillaRebalance
 		public static ConfigEntry<bool> VolcanicEggRebalance;
 
 		//Monsters
+		public static ConfigEntry<bool> BlindVerminRebalance;
 		public static ConfigEntry<bool> BrassContraptionRebalance;
 		public static ConfigEntry<bool> ElderLemurianRebalance;
 		public static ConfigEntry<bool> GreaterWispRebalance;
@@ -122,6 +124,8 @@ namespace VanillaRebalance
 				Items.BrilliantBehemoth.Changes();
 			if (FrostRelicRebalance.Value)
 				Items.FrostRelic.Changes();
+			if (UnstableTeslaCoilRebalance.Value)
+				Items.UnstableTeslaCoil.Changes();
 
 			//Boss/Yellow
 			if (MiredUrnRebalance.Value)
@@ -156,6 +160,8 @@ namespace VanillaRebalance
 				Items.VolcanicEgg.Changes();
 
 			//Monsters
+			if (BlindVerminRebalance.Value)
+				Monsters.BlindVermin.Changes();
 			if (BrassContraptionRebalance.Value)
 				Monsters.BrassContraption.Changes();
 			if (ElderLemurianRebalance.Value)
@@ -185,8 +191,8 @@ namespace VanillaRebalance
 			BisonSteakRebalance = Config.Bind<bool>(new ConfigDefinition("BisonSteak", "Enable Changes"), true, new ConfigDescription("Enables changes to Bison Steak.", null, Array.Empty<object>()));
 			BundleOfFireworksRebalance = Config.Bind<bool>(new ConfigDefinition("BundleOfFireworks", "Enable Changes"), true, new ConfigDescription("Enables changes to Bundle of Fireworks.", null, Array.Empty<object>()));
 			BustlingFungusRebalance = Config.Bind<bool>(new ConfigDefinition("BustlingFungus", "Enable Changes"), true, new ConfigDescription("Enables changes to Bustling Fungus.", null, Array.Empty<object>()));
-			FocusCrystalRebalance = Config.Bind<bool>(new ConfigDefinition("BustlingFungus", "Enable Changes"), true, new ConfigDescription("Enables changes to Bustling Fungus.", null, Array.Empty<object>()));
-			StickyBombRebalance = Config.Bind<bool>(new ConfigDefinition("FocusCrystal", "Enable Changes"), true, new ConfigDescription("Enables changes to Focus Crystal.", null, Array.Empty<object>()));
+			FocusCrystalRebalance = Config.Bind<bool>(new ConfigDefinition("FocusCrystals", "Enable Changes"), true, new ConfigDescription("Enables changes to FocusCrystal.", null, Array.Empty<object>()));
+			StickyBombRebalance = Config.Bind<bool>(new ConfigDefinition("StickyBomb", "Enable Changes"), true, new ConfigDescription("Enables changes to Sticky Bomb.", null, Array.Empty<object>()));
 			TougherTimesRebalance = Config.Bind<bool>(new ConfigDefinition("TougherTimes", "Enable Changes"), true, new ConfigDescription("Enables changes to Tougher Times.", null, Array.Empty<object>()));
 
 			//Uncommon/Green
@@ -203,6 +209,7 @@ namespace VanillaRebalance
 			//Legendary/Red
 			BrilliantBehemothRebalance = Config.Bind<bool>(new ConfigDefinition("BrilliantBehemoth", "Enable Changes"), true, new ConfigDescription("Enables changes to Brilliant Behemoth.", null, Array.Empty<object>()));
 			FrostRelicRebalance = Config.Bind<bool>(new ConfigDefinition("FrostRelic", "Enable Changes"), true, new ConfigDescription("Enables changes to Frost Relic.", null, Array.Empty<object>()));
+			UnstableTeslaCoilRebalance = Config.Bind<bool>(new ConfigDefinition("UnstableTeslaCoil", "Enable Changes"), true, new ConfigDescription("Enables changes to Unstable Tesla Coil.", null, Array.Empty<object>()));
 
 			//Boss/Yellow
 			MiredUrnRebalance = Config.Bind<bool>(new ConfigDefinition("MiredUrn", "Enable Changes"), true, new ConfigDescription("Enables changes to Mired Urn.", null, Array.Empty<object>()));
@@ -225,6 +232,7 @@ namespace VanillaRebalance
 			VolcanicEggRebalance = Config.Bind<bool>(new ConfigDefinition("VolcanicEgg", "Enable Changes"), true, new ConfigDescription("Enables changes to Volcanic Egg.", null, Array.Empty<object>()));
 
 			//Monsters
+			BlindVerminRebalance = Config.Bind<bool>(new ConfigDefinition("BlindVermin", "Enable Changes"), true, new ConfigDescription("Enables changes to Blind Vermin.", null, Array.Empty<object>()));
 			BrassContraptionRebalance = Config.Bind<bool>(new ConfigDefinition("BrassContraption", "Enable Changes"), true, new ConfigDescription("Enables changes to Brass Contraption.", null, Array.Empty<object>()));
 			ElderLemurianRebalance = Config.Bind<bool>(new ConfigDefinition("ElderLemurian", "Enable Changes"), true, new ConfigDescription("Enables changes to Elder Lemurian.", null, Array.Empty<object>()));
 			GreaterWispRebalance = Config.Bind<bool>(new ConfigDefinition("GreaterWisp", "Enable Changes"), true, new ConfigDescription("Enables changes to Greater Wisp.", null, Array.Empty<object>()));

@@ -11,8 +11,9 @@ VanillaRebalance aims at balancing vanilla without changing the effects of items
 	* *Currently Bison Steak gives less than 1 level worth of maximum health even on Huntress who has the lowest hp per level (27). Increasing the amount of maximum health gained will make it more useful early on and keep it reasonably useful at later stages. Anything higher than 30 would undermine Infusion.*
 
 **Bundle of Fireworks**
-* Activating an interactable launches ~~8~~ 5 (+5 per stack) fireworks that deal ~~300%~~ 360% base damage.
-	* *It's a nerf at less than 2 stacks but at early levels many fireworks go to waste anyway cause of lack of enemies. Change helps with scaling at higher stacks which was very underwhelming.*
+* Activating an interactable launches ~~8~~ 5 (+~~4~~ 5 per stack) fireworks that deal ~~300%~~ 360% base damage.
+* Increased explosion radius from 5m to 8m.
+	* *It's a nerf at less than 2 stacks but at early levels many fireworks go to waste anyway cause of lack of enemies. Change helps with scaling at higher stacks which was very underwhelming as well as helps hitting enemies/more enemies thanks to increased AoE.*
 
 **Bustling Fungus**
 * After standing still for 1 second, create a zone that heals for ~~4.5%~~ 4% (+~~2.25%~~ 2% per stack) of your health every second to all allies within ~~3.5m~~ 4m (+~~1.5m~~ 2m per stack).
@@ -43,8 +44,8 @@ VanillaRebalance aims at balancing vanilla without changing the effects of items
 	* *Predatory Instincts is very powerful in the right hands, especially Bandit or Huntress using Flurry. Nerf puts it in a much more fair spot considering the standard 15% increase from Soldier's Syringe. It has an unlisted 5% critical chance which works just like Harvester's Scythe and Predatory Instincts so it was added to the tooltip.*
 
 **Razorwire**
-* Getting hit causes you to explode in a burst of razors, dealing 160% damage. Hits up to ~~5~~ 3 (+2 per stack) targets in a ~~25m~~ 20m (+~~10m~~ 2m per stack) radius.
-	* *The radius is enormous so it was decreased together with the amount of targets, both to match the Ukulele.*
+* Getting hit causes you to explode in a burst of razors, dealing 160% damage. Hits up to 5 (+2 per stack) targets in a ~~25m~~ 20m (+~~10m~~ 2m per stack) radius.
+	* *The radius is enormous so it was decreased to match the Ukulele.*
 
 **Ukulele**
 * ~~25%~~ 20% chance to fire chain lightning for 80% TOTAL damage on up to 3 (+2 per stack) targets within 20m (+2m per stack).
@@ -61,6 +62,10 @@ VanillaRebalance aims at balancing vanilla without changing the effects of items
 **Frost Relic**
 * Killing an enemy surrounds you with an ice storm that deals 300% damage every 0.25s and slows enemies by 80% for 1.5s. The storm grows with every kill, increasing its radius by ~~2m~~ 1m. Stacks up to ~~18m~~ 16m (+~~12m~~ 8m per stack).
 	* *Frost Relic used to be weak, but now it has become a bit too powerful. I don't think nerfing damage is a good idea as it was the main issue in the past so I've nerfed radius to match Warbanner, which is also a part of AoE unification. With a potential of such a big radius, once it reaches a certain size, it can easily fuel itself while also creating a lot of hits which create a lot of effects (although at low proc coefficient). Damage number change is just to better represent the actual behavior of the item. Initial radius increased from 6m to 8m but radius per kill decreased from 2m to 1m, otherwise it would end up as a buff.*
+
+**Unstable Tesla Coil**
+* Added to AIBlacklist.
+	* *When enemies get Unstable Tesla Coil in Void Fields, it's almost a guaranteed end of the run.*
 
 **Mired Urn**
 * While in combat, the nearest 1 (+1 per stack) enemies to you within ~~13m~~ 12m will be 'tethered' to you, dealing 100% damage per second, applying tar, and healing you for 100% of the damage dealt.
@@ -111,20 +116,33 @@ VanillaRebalance aims at balancing vanilla without changing the effects of items
 
 ### Monsters
 
+**Blind Vermin**
+* Nerfed movement speed from 13 m/s to 12m/s.
+	* *Blind Vermin is crazy fast for an enemy that can appear on a 2nd stage so it was slightly toned down.*
+
 **Brass Contraption**
-* Nerfed damage from 10 (+2 per level) to 9 (+1.8 per level)
-	* *This is a temporary overnerf until I'll figure out how to change the damage % of the balls.*
+* Buffed damage from 10 (+2 per level) to 12 (+2.4 per level).
+* Nerfed damage coefficient from 5 to 4.
+	* *Damage dealt by Brass Contraptions can be ridiculously high and oftentimes as elites they can one-shot the player (blazing/overloading). Above changes will result in a whopping 4% damage nerf which may sound ridiculous but is meant to tone them down slightly without making them too weak early on.*
 
 **Elder Lemurian**
-* Nerfed health from 900 (+270 per level) to 800 (+240 per level)
-* Nerfed movement speed from 13 m/s to 12 m/s
+* Nerfed health from 900 (+270 per level) to 800 (+240 per level).
+* Nerfed movement speed from 13 m/s to 12 m/s.
+* Nerfed fireball amount from 5 to 3 and their spread from 45&deg; to 20&deg;.
 	* *A total beast with high damage, health and movement speed hence the nerf.*
 
 **Greater Wisp**
-* Nerfed health from 750 (+250 per level) to 700 (+210 per level)
+* Nerfed health from 750 (+250 per level) to 700 (+210 per level).
 	* *Greater Wisps have surprisingly high health. Slight nerf will put them more in line with other enemies while still keeping them quite tanky.*
 
 ## Changelog
+
+**1.0.6**
+* Changed the rebalance of Razorwire, Bundle of Fireworks, Elder Lemurian and Brass Contraption
+* Rebalanced Blind Vermin
+* Added Unstable Tesla Coil to AIBlacklist
+* Fixed some wrong names in the config
+* Fixed Focus Crystal visual indicator showing vanilla range
 
 **1.0.5**
 * Removed AtG Missile Mk. 1 and Runald's Band rebalance

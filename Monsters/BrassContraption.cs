@@ -9,8 +9,14 @@ namespace VanillaRebalance.Monsters
 		public static void Changes()
 		{
 			var BrassContraption = Addressables.LoadAssetAsync<GameObject>("RoR2/Base/Bell/BellBody.prefab").WaitForCompletion();
-			BrassContraption.GetComponent<CharacterBody>().baseDamage = 2f;
-			BrassContraption.GetComponent<CharacterBody>().levelDamage = 0.4f;
+			BrassContraption.GetComponent<CharacterBody>().baseDamage = 12f;
+			BrassContraption.GetComponent<CharacterBody>().levelDamage = 2.4f;
+
+			On.EntityStates.Bell.BellWeapon.ChargeTrioBomb.OnEnter += (orig, self) =>
+			{
+				EntityStates.Bell.BellWeapon.ChargeTrioBomb.damageCoefficient = 4f;
+				orig(self);
+			};
 		}
 	}
 }

@@ -12,6 +12,13 @@ namespace VanillaRebalance.Monsters
 			ElderLemurian.GetComponent<CharacterBody>().baseMaxHealth = 800f;
 			ElderLemurian.GetComponent<CharacterBody>().levelMaxHealth = 240f;
 			ElderLemurian.GetComponent<CharacterBody>().baseMoveSpeed = 12f;
+
+			On.EntityStates.LemurianBruiserMonster.FireMegaFireball.OnEnter += (orig, self) =>
+			{
+				EntityStates.LemurianBruiserMonster.FireMegaFireball.projectileCount = 3;
+				EntityStates.LemurianBruiserMonster.FireMegaFireball.totalYawSpread = 20f;
+				orig(self);
+			};
 		}
 	}
 }
