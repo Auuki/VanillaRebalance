@@ -1,13 +1,20 @@
-﻿using R2API;
+﻿using BepInEx.Configuration;
+using R2API;
 using RoR2;
+using System;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 
 namespace VanillaRebalance.Items
 {
-	internal class FrostRelic
+	internal class FrostRelic : RebalanceComponent
 	{
-		public static void Changes()
+		protected override ConfigEntry<bool> GetConfigToggle(ConfigFile configFile)
+		{
+			return configFile.Bind<bool>(new ConfigDefinition("FrostRelic", "Enable Changes"), true, new ConfigDescription("Enables changes to Frost Relic.", null, Array.Empty<object>()));
+		}
+
+		public override void Load()
 		{
 			var FrostRelic = Addressables.LoadAssetAsync<GameObject>("RoR2/Base/Icicle/IcicleAura.prefab").WaitForCompletion();
 			FrostRelic.GetComponent<IcicleAuraController>().icicleBaseRadius = 8f;

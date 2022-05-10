@@ -1,15 +1,22 @@
-﻿using MonoMod.Cil;
+﻿using BepInEx.Configuration;
+using MonoMod.Cil;
 using R2API;
+using System;
 
 namespace VanillaRebalance.Items
 {
-	internal class BrilliantBehemoth
+	internal class BrilliantBehemoth : RebalanceComponent
 	{
-		public static void Changes()
+		protected override ConfigEntry<bool> GetConfigToggle(ConfigFile configFile)
+		{
+			return configFile.Bind<bool>(new ConfigDefinition("BrilliantBehemoth", "Enable Changes"), true, new ConfigDescription("Enables changes to Brilliant Behemoth.", null, Array.Empty<object>()));
+		}
+
+		public override void Load()
 		{
 			IL.RoR2.GlobalEventManager.OnHitAll += (il) =>
 			{
-				ILCursor ilcursor = new ILCursor(il);
+				ILCursor ilcursor = new(il);
 				ilcursor.GotoNext(
 					x => x.MatchLdcR4(1.5f)
 					);

@@ -1,17 +1,24 @@
-﻿using MonoMod.Cil;
+﻿using BepInEx.Configuration;
+using MonoMod.Cil;
 using R2API;
+using System;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 
 namespace VanillaRebalance.Items
 {
-	internal class FocusCrystal
+	internal class FocusCrystal : RebalanceComponent
 	{
-		public static void Changes()
+		protected override ConfigEntry<bool> GetConfigToggle(ConfigFile configFile)
+		{
+			return configFile.Bind<bool>(new ConfigDefinition("FocusCrystal", "Enable Changes"), true, new ConfigDescription("Enables changes to Focus Crystal.", null, Array.Empty<object>()));
+		}
+
+		public override void Load()
 		{
 			IL.RoR2.HealthComponent.TakeDamage += (il) =>
 			{
-				ILCursor ilcursor = new ILCursor(il);
+				ILCursor ilcursor = new(il);
 				ilcursor.GotoNext(
 					x => x.MatchLdcR4(169f)
 					);

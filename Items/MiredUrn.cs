@@ -1,13 +1,20 @@
-﻿using R2API;
+﻿using BepInEx.Configuration;
+using R2API;
 using RoR2;
+using System;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 
 namespace VanillaRebalance.Items
 {
-	internal class MiredUrn
+	internal class MiredUrn : RebalanceComponent
 	{
-		public static void Changes()
+		protected override ConfigEntry<bool> GetConfigToggle(ConfigFile configFile)
+		{
+			return configFile.Bind<bool>(new ConfigDefinition("MiredUrn", "Enable Changes"), true, new ConfigDescription("Enables changes to Mired Urn.", null, Array.Empty<object>()));
+		}
+
+		public override void Load()
 		{
 			var MiredUrn = Addressables.LoadAssetAsync<GameObject>("RoR2/Base/SiphonOnLowHealth/SiphonNearbyBodyAttachment.prefab").WaitForCompletion();
 			MiredUrn.GetComponent<SiphonNearbyController>().radius = 12f;

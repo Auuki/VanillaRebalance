@@ -1,19 +1,23 @@
-﻿using MonoMod.Cil;
+﻿using BepInEx.Configuration;
+using MonoMod.Cil;
 using R2API;
+using System;
 
 namespace VanillaRebalance.Items
 {
-	public class BisonSteak
+	public class BisonSteak : RebalanceComponent
 	{
-		public static void Changes()
+		protected override ConfigEntry<bool> GetConfigToggle(ConfigFile configFile)
+		{
+			return configFile.Bind<bool>(new ConfigDefinition("BisonSteak", "Enable Changes"), true, new ConfigDescription("Enables changes to Bison Steak.", null, Array.Empty<object>()));
+		}
+
+		public override void Load()
 		{
 			IL.RoR2.CharacterBody.RecalculateStats += (il) =>
-			//public static void IL_RecalculateStats(ILContext il)
 			{
-				ILCursor ilcursor = new ILCursor(il);
+				ILCursor ilcursor = new(il);
 				ilcursor.GotoNext(
-					//x => ILPatternMatchingExt.MatchLdsfld(x, "RoR2.RoR2Content/Items", "FlatHealth"),
-					//x => ILPatternMatchingExt.MatchLdloc(x, 36),
 					x => x.MatchLdcR4(25f)
 					);
 				ilcursor.Next.Operand = 30f;

@@ -1,15 +1,22 @@
-﻿using MonoMod.Cil;
+﻿using BepInEx.Configuration;
+using MonoMod.Cil;
 using R2API;
+using System;
 
 namespace VanillaRebalance.Items
 {
-	internal class Razorwire
+	internal class Razorwire : RebalanceComponent
 	{
-		public static void Changes()
+		protected override ConfigEntry<bool> GetConfigToggle(ConfigFile configFile)
+		{
+			return configFile.Bind<bool>(new ConfigDefinition("Razorwire", "Enable Changes"), true, new ConfigDescription("Enables changes to Razorwire.", null, Array.Empty<object>()));
+		}
+
+		public override void Load()
 		{
 			IL.RoR2.HealthComponent.TakeDamage += (il) =>
 			{
-				ILCursor ilcursor = new ILCursor(il);
+				ILCursor ilcursor = new(il);
 				ilcursor.GotoNext(
 					x => x.MatchLdcR4(25f),
 					x => x.MatchLdcR4(10f)

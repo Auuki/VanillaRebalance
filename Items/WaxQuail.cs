@@ -1,16 +1,23 @@
-﻿using Mono.Cecil.Cil;
+﻿using BepInEx.Configuration;
+using Mono.Cecil.Cil;
 using MonoMod.Cil;
 using R2API;
+using System;
 
 namespace VanillaRebalance.Items
 {
-	internal class WaxQuail
+	internal class WaxQuail : RebalanceComponent
 	{
-		public static void Changes()
+		protected override ConfigEntry<bool> GetConfigToggle(ConfigFile configFile)
+		{
+			return configFile.Bind<bool>(new ConfigDefinition("WaxQuail", "Enable Changes"), true, new ConfigDescription("Enables changes to Wax Quail.", null, Array.Empty<object>()));
+		}
+
+		public override void Load()
 		{
 			IL.EntityStates.GenericCharacterMain.ProcessJump += (il) =>
 			{
-				ILCursor ilcursor = new ILCursor(il);
+				ILCursor ilcursor = new(il);
 				ilcursor.GotoNext(
 					x => x.MatchLdcR4(10f)
 					);

@@ -1,12 +1,19 @@
-﻿using RoR2;
+﻿using BepInEx.Configuration;
+using RoR2;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace VanillaRebalance.Items
 {
-	internal class UnstableTeslaCoil
+	internal class UnstableTeslaCoil : RebalanceComponent
 	{
-		public static void Changes()
+		protected override ConfigEntry<bool> GetConfigToggle(ConfigFile configFile)
+		{
+			return configFile.Bind<bool>(new ConfigDefinition("UnstableTeslaCoil", "Enable Changes"), true, new ConfigDescription("Enables changes to Unstable Tesla Coil.", null, Array.Empty<object>()));
+		}
+
+		public override void Load()
 		{
 			On.RoR2.ItemCatalog.Init += (orig) =>
 			{

@@ -1,19 +1,26 @@
-﻿using Mono.Cecil.Cil;
+﻿using BepInEx.Configuration;
+using Mono.Cecil.Cil;
 using MonoMod.Cil;
 using R2API;
 using RoR2.Projectile;
+using System;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 
 namespace VanillaRebalance.Items
 {
-	public class BundleOfFireworks
+	public class BundleOfFireworks : RebalanceComponent
 	{
-		public static void Changes()
+		protected override ConfigEntry<bool> GetConfigToggle(ConfigFile configFile)
+		{
+			return configFile.Bind<bool>(new ConfigDefinition("BundleOfFireworks", "Enable Changes"), true, new ConfigDescription("Enables changes to Bundle of Fireworks.", null, Array.Empty<object>()));
+		}
+
+		public override void Load()
 		{
 			IL.RoR2.FireworkLauncher.FireMissile += (il) =>
 			{
-				ILCursor ilcursor = new ILCursor(il);
+				ILCursor ilcursor = new(il);
 				ilcursor.GotoNext(
 					x => ILPatternMatchingExt.MatchLdfld(x, "RoR2.FireworkLauncher", "damageCoefficient")
 					);
@@ -24,7 +31,7 @@ namespace VanillaRebalance.Items
 
 			IL.RoR2.GlobalEventManager.OnInteractionBegin += (il) =>
 			{
-				ILCursor ilcursor = new ILCursor(il);
+				ILCursor ilcursor = new(il);
 				ilcursor.GotoNext(
 					x => x.MatchStloc(9)
 					);

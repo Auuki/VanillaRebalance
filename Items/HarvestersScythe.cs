@@ -1,15 +1,22 @@
-﻿using MonoMod.Cil;
+﻿using BepInEx.Configuration;
+using MonoMod.Cil;
 using R2API;
+using System;
 
 namespace VanillaRebalance.Items
 {
-	public class HarvestersScythe
+	public class HarvestersScythe : RebalanceComponent
 	{
-		public static void Changes()
+		protected override ConfigEntry<bool> GetConfigToggle(ConfigFile configFile)
+		{
+			return configFile.Bind<bool>(new ConfigDefinition("HarvestersScythe", "Enable Changes"), true, new ConfigDescription("Enables changes to Harvester's Scythe.", null, Array.Empty<object>()));
+		}
+
+		public override void Load()
 		{
 			IL.RoR2.GlobalEventManager.OnCrit += (il) =>
 			{
-				ILCursor ilcursor = new ILCursor(il);
+				ILCursor ilcursor = new(il);
 				ilcursor.GotoNext(
 					x => x.MatchLdcR4(4f),
 					x => x.MatchLdloc(4)

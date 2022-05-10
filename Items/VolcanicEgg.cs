@@ -1,13 +1,19 @@
-﻿using R2API;
+﻿using BepInEx.Configuration;
+using R2API;
 using RoR2;
+using System;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 
 namespace VanillaRebalance.Items
 {
-	internal class VolcanicEgg
+	internal class VolcanicEgg : RebalanceComponent
 	{
-		public static void Changes()
+		protected override ConfigEntry<bool> GetConfigToggle(ConfigFile configFile)
+		{
+			return configFile.Bind<bool>(new ConfigDefinition("VolcanicEgg", "Enable Changes"), true, new ConfigDescription("Enables changes to Volcanic Egg.", null, Array.Empty<object>()));
+		}
+		public override void Load()
 		{
 			var VolcanicEgg = Addressables.LoadAssetAsync<GameObject>("RoR2/Base/FireBallDash/FireballVehicle.prefab").WaitForCompletion();
 			VolcanicEgg.GetComponent<FireballVehicle>().blastDamageCoefficient = 10f;

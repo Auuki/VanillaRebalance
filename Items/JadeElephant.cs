@@ -1,17 +1,24 @@
-﻿using MonoMod.Cil;
+﻿using BepInEx.Configuration;
+using MonoMod.Cil;
 using R2API;
 using RoR2;
+using System;
 using UnityEngine.AddressableAssets;
 
 namespace VanillaRebalance.Items
 {
-	internal class JadeElephant
+	internal class JadeElephant : RebalanceComponent
 	{
-		public static void Changes()
+		protected override ConfigEntry<bool> GetConfigToggle(ConfigFile configFile)
+		{
+			return configFile.Bind<bool>(new ConfigDefinition("JadeElephant", "Enable Changes"), true, new ConfigDescription("Enables changes to Jade Elephant.", null, Array.Empty<object>()));
+		}
+
+		public override void Load()
 		{
 			IL.RoR2.EquipmentSlot.FireGainArmor += (il) =>
 			{
-				ILCursor ilcursor = new ILCursor(il);
+				ILCursor ilcursor = new(il);
 				ilcursor.GotoNext(
 					x => x.MatchLdcR4(5f)
 					);
@@ -20,7 +27,7 @@ namespace VanillaRebalance.Items
 
 			IL.RoR2.CharacterBody.RecalculateStats += (il) =>
 			{
-				ILCursor ilcursor = new ILCursor(il);
+				ILCursor ilcursor = new(il);
 				ilcursor.GotoNext(
 					x => x.MatchLdcR4(500f)
 					);

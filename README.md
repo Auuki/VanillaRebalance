@@ -35,6 +35,10 @@ VanillaRebalance aims at balancing vanilla without changing the effects of items
 * Gain 5% critical chance. Critical strikes heal for ~~8~~ 4 (+4 per stack) health.
 	* *Heal nerf puts it more in line with Leeching Seed as the first Harvester's Scythe only requires 16% critical strike chance to outperform the seed (26% after the nerf).*
 
+**Hunter's Harpoon**
+* Killing an enemy increases movement speed by ~~125%~~ 100%, fading over ~~1~~ 1.5 (+~~0.5~~ 0.75 per stack) seconds.
+	* *Effect is extremely short and is powerful enough to make movement annoying because of the short but strong bursts.*
+
 **Kjaro's Band**
 * Hits that deal more than 400% damage also blast enemies with a runic flame tornado, dealing ~~300%~~ 250% (+~~300%~~ 250% per stack) TOTAL damage over time. Recharges every 10 seconds.
 	* *Kjaro's Band in most cases outdamages Runald's Band thanks to higher possible total damage and big AoE hence it was toned down.*
@@ -50,6 +54,10 @@ VanillaRebalance aims at balancing vanilla without changing the effects of items
 **Ukulele**
 * ~~25%~~ 20% chance to fire chain lightning for 80% TOTAL damage on up to 3 (+2 per stack) targets within 20m (+2m per stack).
 	* *Ukulele is very strong, I'd consider decreasing the damage but 25% chance to trigger is very high so lets start there. This way it also matches Sentient Meat Hook's listed base chance (cause in reality it's 16,7%).*
+
+**War Horn**
+* Activating your Equipment gives you +~~70%~~ 40% `(+20% per stack)` attack speed for 8s (+4s per stack).
+	* *The way War Horn stacks is underwhelming, making it not worth stacking beyond a certain threshold even as low as a single horn. This change helps with that. The initial buff was nerfed to compensate for it but it becomes better starting from 3 stacks. Keep in mind that it's fairly easy to make War Horn effect permanent/almost permanent, which is also addressed by nerfing Gesture of the Drowned. What we end up with is an item that will still be scrapped by people who don't intend to use equipment too much/use long cooldown ones but stacks well for people who intend to use it, becoming more rewarding.*
 
 **Wax Quail**
 * Jumping while sprinting boosts you forward by ~~10m~~ 14m (+~~10m~~ 7m per stack).
@@ -72,7 +80,7 @@ VanillaRebalance aims at balancing vanilla without changing the effects of items
 	* *Made to match Focus Crystal's range after the change.*
 
 **Shatterspleen**
-* Gain 5% critical chance. Critical Strikes bleed enemies for 240% base damage. Bleeding enemies explode on death for 400% (+400% per stack) damage~~, plus an additional 15% (+15% per stack) of their maximum health.~~
+* Gain 5% critical chance. Critical Strikes bleed enemies for 240% base damage. Bleeding enemies explode on death for 400% (+400% per stack) damage ~~, plus an additional 15% (+15% per stack) of their maximum health.~~
 * Decreased explosion radius from 16m to 12m.
 	* *Additional damage based on the enemy's maximum health is beyond overpowered, especially considering how big the explosion radius is (same as a single Warbanner). Oftentimes killing a boss at later stages creates a domino effect where everything around dies, killing all other bosses and enemies in the process. It has an unlisted 5% critical chance which works just like Harvester's Scythe and Predatory Instincts so it was added to the tooltip.*
 
@@ -132,10 +140,15 @@ VanillaRebalance aims at balancing vanilla without changing the effects of items
 	* *A total beast with high damage, health and movement speed hence the nerf.*
 
 **Greater Wisp**
-* Nerfed health from 750 (+250 per level) to 700 (+210 per level).
+* Nerfed health from 750 (+225 per level) to 700 (+210 per level).
 	* *Greater Wisps have surprisingly high health. Slight nerf will put them more in line with other enemies while still keeping them quite tanky.*
 
 ## Changelog
+
+**1.0.7**
+* Rebalanced Hunter's Harpoon and War Horn
+* Fixed Singularity Band visual indicator showing vanilla range
+* Rewrote a lot of code again
 
 **1.0.6**
 * Changed the rebalance of Razorwire, Bundle of Fireworks, Elder Lemurian and Brass Contraption
