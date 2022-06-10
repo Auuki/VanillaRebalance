@@ -1,4 +1,5 @@
 ﻿using BepInEx.Configuration;
+using MonoMod.Cil;
 using RoR2;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,15 @@ namespace VanillaRebalance.Items
 
 		public override void Load()
 		{
+			IL.RoR2.Items.ShockNearbyBodyBehavior.FixedUpdate += (il) =>
+			{
+				ILCursor ilcursor = new(il);
+				ilcursor.GotoNext(
+					x => x.MatchLdcR4(35f)
+					);
+				ilcursor.Next.Operand = 32f;
+			};
+
 			On.RoR2.ItemCatalog.Init += (orig) =>
 			{
 				orig();

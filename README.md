@@ -2,6 +2,14 @@
 
 VanillaRebalance aims at balancing vanilla without changing the effects of items/monsters/survivors. Every change can be disabled through the config. It is my first mod, I'm still learning how to change more values so expect many more adjustments to come. I will start adjusting survivors in the future.
 
+## Key aspects
+
+**Staying true to vanilla**
+* VanillaRebalance does not change the vanilla effects. This means you get the exact same vanilla experience but with a better balance. It is important to note that this also puts a limitation on the mod - VanillaRebalance cannot properly balance some items like Bison Steak because its vanilla effect is lackluster and impossible to properly balance just by changing the only number that can be changed.
+
+**AoE unification**
+* AoE ranges in RoR2 are all over the place. One of the goals of VanillaRebalance is to unify them to make it easier for the player to get a feel of certain ranges as well as improve the balance. Based on vanilla, the factor of 4m was chosen (4m, 8m, 12m, 16m, etc.).
+
 ## Changes
 
 ### Items
@@ -72,6 +80,8 @@ VanillaRebalance aims at balancing vanilla without changing the effects of items
 	* *Frost Relic used to be weak, but now it has become a bit too powerful. I don't think nerfing damage is a good idea as it was the main issue in the past so I've nerfed radius to match Warbanner, which is also a part of AoE unification. With a potential of such a big radius, once it reaches a certain size, it can easily fuel itself while also creating a lot of hits which create a lot of effects (although at low proc coefficient). Damage number change is just to better represent the actual behavior of the item. Initial radius increased from 6m to 8m but radius per kill decreased from 2m to 1m, otherwise it would end up as a buff.*
 
 **Unstable Tesla Coil**
+* Decreased radius from 35m to 32m.
+	* *A small nerf based on AoE unification.*
 * Added to AIBlacklist.
 	* *When enemies get Unstable Tesla Coil in Void Fields, it's almost a guaranteed end of the run.*
 
@@ -97,7 +107,7 @@ VanillaRebalance aims at balancing vanilla without changing the effects of items
 	* *Gesture of the Drowned is very powerful while its downside is usually sought after. Initial cooldown reduction is extreme but the downside is weak so it requires a nerf.*
 
 **Polylute**
-* ~~25%~~ 20% chance to fire lightning for 60% TOTAL damage up to 3 (+3 per stack) times. Corrupts all Ukuleles.
+* ~~25%~~ 20% chance to fire lightning for 60% TOTAL damage up to 3 (+2 per stack) times. Corrupts all Ukuleles.
 	* *Nerf to keep it closer to Ukulele.*
 
 **Singularity Band**
@@ -124,6 +134,10 @@ VanillaRebalance aims at balancing vanilla without changing the effects of items
 
 ### Monsters
 
+**Blind Pest**
+* Nerfed spit range from 70m to 50m
+	* *Blind Pest is more annoying than Vulture thanks to faster movement speed, faster projectile speed and further range. I've decided that range is going to be the best nerf as it will bring them closer to the survivors making them easier to kill.*
+
 **Blind Vermin**
 * Nerfed movement speed from 13 m/s to 12m/s.
 	* *Blind Vermin is crazy fast for an enemy that can appear on a 2nd stage so it was slightly toned down.*
@@ -143,7 +157,30 @@ VanillaRebalance aims at balancing vanilla without changing the effects of items
 * Nerfed health from 750 (+225 per level) to 700 (+210 per level).
 	* *Greater Wisps have surprisingly high health. Slight nerf will put them more in line with other enemies while still keeping them quite tanky.*
 
+<!--### Survivors
+
+**Acrid**
+* Buffed Neurotoxin damage from 240% to 320%.
+
+**Captain**
+* Nerfed Vulcan Shotgun damage from 8x120% to 8x100%, proc coefficient from 0.75 to 0.5 and buffed charge duration from 1.2s to 1s.
+* Buffed Power Tazer damage from 100% to 200%.
+* Nerfed Orbital Probe cooldown from 11s to 12s.
+
+**Huntress**
+* Buffed Strafe damage from 150% to 200%.
+* Buffed Flurry duration from 1.3s to 1.2s and nerfed proc coefficient from 0.7 to 0.6.
+* Buffed Arrow Rain radius from 7.5m to 8m.
+* Buffed Ballista damage from 3x900% to 3x1000%.
+
+**MUL-T**
+* Buffed Blast Canister damage from 220% to 250% and bomblets damage from 5x44% to 5x50%.
+-->
 ## Changelog
+
+**1.0.8**
+* Rebalanced Unstable Tesla Coil, Preon Accumulator and Blind Pest
+* Changed the rebalance of Polylute
 
 **1.0.7**
 * Rebalanced Hunter's Harpoon and War Horn
@@ -151,16 +188,16 @@ VanillaRebalance aims at balancing vanilla without changing the effects of items
 * Rewrote a lot of code again
 
 **1.0.6**
-* Changed the rebalance of Razorwire, Bundle of Fireworks, Elder Lemurian and Brass Contraption
 * Rebalanced Blind Vermin
+* Changed the rebalance of Razorwire, Bundle of Fireworks, Elder Lemurian and Brass Contraption
 * Added Unstable Tesla Coil to AIBlacklist
 * Fixed some wrong names in the config
 * Fixed Focus Crystal visual indicator showing vanilla range
 
 **1.0.5**
-* Removed AtG Missile Mk. 1 and Runald's Band rebalance
-* Changed the rebalance of Kjaro's Band
 * Rebalanced Frost Relic
+* Changed the rebalance of Kjaro's Band
+* Removed AtG Missile Mk. 1 and Runald's Band rebalance
 
 **1.0.4**
 * Added the missing README
