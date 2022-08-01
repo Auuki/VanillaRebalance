@@ -39,6 +39,10 @@ VanillaRebalance aims at balancing vanilla without changing the effects of items
 * ~~13%~~ 10% (+~~13%~~ 10% per stack) chance to block incoming damage. Unaffected by luck.
 	* *Tougher Times is powerful for its rarity hence the nerf. The formula used is `1 - 1 / (1 + 0.15 * amount)` which rounds down to 13% with a single item if someone wonders why there's 13% instead of 15%.*
 
+**Death Mark**
+* Enemies with 4 or more debuffs are marked for death, increasing damage taken by 50% (+5% per stack) from all sources for 8 (+4 per stack) seconds.
+	* *Death Mark isn't worth stacking past 1-2 stacks as duration becomes long enough and that's the only variable that stacks. Damage now scales while duration stacking got nerfed. Changing amount of debuffs required is unecessary as there's more debuffs now in SotV so it's slightly easier to apply Death Mark.*
+
 **Harvester's Scythe**
 * Gain 5% critical chance. Critical strikes heal for ~~8~~ 4 (+4 per stack) health.
 	* *Heal nerf puts it more in line with Leeching Seed as the first Harvester's Scythe only requires 16% critical strike chance to outperform the seed (26% after the nerf).*
@@ -128,6 +132,10 @@ VanillaRebalance aims at balancing vanilla without changing the effects of items
 * Increased cooldown from 45s to 60s.
 	* *Jade Elephant has two issues - duration being low and effect being extremely potent. Increasing duration makes it more interesting to most players than just something they use in extreme situations. To compensate, the cooldown was increased but it still ends up as a buff (Fuel Cell amount required to make the effect permanent is lowered from 14 to 13). Now that's another issue - the effect is crazily good when permanent/almost permanent. That's why armor gained was nerfed and while numerically it seems like a big nerf, it only decreases damage reduction from 83.33% to 66.67%. This keeps it useful, fits the more broad use scenario and nerfs the permanent edge case.*
 
+**Preon Accumulator**
+* Fires preon tendrils, zapping enemies within ~~35m~~ 32m for up to 1200% damage/second. On contact, detonate in an enormous 20m explosion for 8000% damage.
+	* *A small nerf based on AoE unification.*
+
 **Volcanic Egg**
 * Turn into a draconic fireball for 5 seconds. Deal 500% damage on impact. Detonates at the end for ~~800%~~ 1000% damage.
 	* *Generally a nice item but the final explosion's damage is a bit underwhelming, especially considering that you end up right next to the enemy.*
@@ -135,7 +143,7 @@ VanillaRebalance aims at balancing vanilla without changing the effects of items
 ### Monsters
 
 **Blind Pest**
-* Nerfed spit range from 70m to 50m
+* Nerfed spit range from 70m to 50m.
 	* *Blind Pest is more annoying than Vulture thanks to faster movement speed, faster projectile speed and further range. I've decided that range is going to be the best nerf as it will bring them closer to the survivors making them easier to kill.*
 
 **Blind Vermin**
@@ -177,6 +185,10 @@ VanillaRebalance aims at balancing vanilla without changing the effects of items
 * Buffed Blast Canister damage from 220% to 250% and bomblets damage from 5x44% to 5x50%.
 -->
 ## Changelog
+
+**1.0.9**
+* Rebalanced Death Mark
+* Made the mod more compatible with other mods
 
 **1.0.8**
 * Rebalanced Unstable Tesla Coil, Preon Accumulator and Blind Pest

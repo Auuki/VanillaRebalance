@@ -17,13 +17,17 @@ namespace VanillaRebalance.Items
 			IL.RoR2.HealthComponent.TakeDamage += (il) =>
 			{
 				ILCursor ilcursor = new(il);
-				ilcursor.GotoNext(
-					x => x.MatchLdcR4(25f),
-					x => x.MatchLdcR4(10f)
-					);
-				ilcursor.Next.Operand = 20f;
-				ilcursor.Index++;
-				ilcursor.Next.Operand = 2f;
+				if (ilcursor.TryGotoNext(MoveType.Before,
+					x => x.MatchLdcR4(25f)))
+				{
+					ilcursor.Next.Operand = 20f;
+				}
+
+				if (ilcursor.TryGotoNext(MoveType.Before,
+					x => x.MatchLdcR4(10f)))
+				{
+					ilcursor.Next.Operand = 2f;
+				}
 			};
 
 			string desc = string.Format("Getting hit causes you to explode in a burst of razors, dealing <style=cIsDamage>160%</style> damage. Hits up to <style=cIsDamage>5</style> <style=cStack>(+2 per stack)</style> targets in a <style=cIsDamage>20m</style> <style=cStack>(+2m per stack)</style> radius.");

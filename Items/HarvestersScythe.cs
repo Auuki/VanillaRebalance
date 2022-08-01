@@ -17,11 +17,12 @@ namespace VanillaRebalance.Items
 			IL.RoR2.GlobalEventManager.OnCrit += (il) =>
 			{
 				ILCursor ilcursor = new(il);
-				ilcursor.GotoNext(
+				if (ilcursor.TryGotoNext(MoveType.Before,
 					x => x.MatchLdcR4(4f),
-					x => x.MatchLdloc(4)
-					);
-				ilcursor.Next.Operand = 0f;
+					x => x.MatchLdloc(4)))
+				{
+					ilcursor.Next.Operand = 0f;
+				}
 			};
 
 			string desc = string.Format("Gain <style=cIsDamage>5% critical chance</style>. <style=cIsDamage>Critical strikes</style> <style=cIsHealing>heal</style> for <style=cIsHealing>4</style> <style=cStack>(+4 per stack)</style> <style=cIsHealing>health</style>.");

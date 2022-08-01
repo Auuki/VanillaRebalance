@@ -17,11 +17,12 @@ namespace VanillaRebalance.Items
 			IL.RoR2.HealthComponent.TakeDamage += (il) =>
 			{
 				ILCursor ilcursor = new(il);
-				ilcursor.GotoNext(
+				if (ilcursor.TryGotoNext(MoveType.Before,
 					x => x.MatchLdcR4(15f),
-					x => x.MatchLdarg(0)
-					);
-				ilcursor.Next.Operand = 11f;
+					x => x.MatchLdarg(0)))
+				{
+					ilcursor.Next.Operand = 11f;
+				}
 			};
 
 			string desc = string.Format("<style=cIsHealing>10%</style> <style=cStack>(+10% per stack)</style> chance to <style=cIsHealing>block</style> incoming damage. <style=cIsUtility>Unaffected by luck</style>.");

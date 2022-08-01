@@ -17,15 +17,17 @@ namespace VanillaRebalance.Items
 			IL.RoR2.GlobalEventManager.OnCharacterDeath += (il) =>
 			{
 				ILCursor ilcursor = new(il);
-				ilcursor.GotoNext(
-					x => x.MatchLdcR4(0.15f)
-					);
-				ilcursor.Next.Operand = 0f;
+				if (ilcursor.TryGotoNext(MoveType.Before,
+					x => x.MatchLdcR4(0.15f)))
+				{
+					ilcursor.Next.Operand = 0f;
+				}
 
-				ilcursor.GotoNext(
-					x => x.MatchLdcR4(16f)
-					);
-				ilcursor.Next.Operand = 12f;
+				if (ilcursor.TryGotoNext(MoveType.Before,
+					x => x.MatchLdcR4(16f)))
+				{
+					ilcursor.Next.Operand = 12f;
+				}
 			};
 
 			string desc = string.Format("Gain <style=cIsDamage>5% critical chance</style>. <style=cIsDamage>Critical Strikes bleed</style> enemies for <style=cIsDamage>240%</style> base damage. <style=cIsDamage>Bleeding</style> enemies <style=cIsDamage>explode</style> on death for <style=cIsDamage>400%</style> <style=cStack>(+400% per stack)</style> damage.");

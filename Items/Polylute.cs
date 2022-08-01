@@ -2,6 +2,8 @@
 using Mono.Cecil.Cil;
 using MonoMod.Cil;
 using R2API;
+using RoR2;
+using RoR2.Orbs;
 using System;
 
 namespace VanillaRebalance.Items
@@ -18,22 +20,22 @@ namespace VanillaRebalance.Items
 			IL.RoR2.GlobalEventManager.OnHitEnemy += (il) =>
 			{
 				ILCursor ilcursor = new(il);
-				ilcursor.GotoNext(
+				if (ilcursor.TryGotoNext(MoveType.Before,
 					x => x.MatchLdcR4(25f),
-					x => x.MatchStloc(56)
-					);
-				ilcursor.Next.Operand = 20f;
+					x => x.MatchStloc(56)))
+				{
+					ilcursor.Next.Operand = 20f;
+				}
 
-				ilcursor.GotoNext(
-					x => x.MatchLdloc(59),
-					x => x.MatchLdcI4(3)
-					);
-				ilcursor.Index++;
-				ilcursor.Remove();
-				ilcursor.Emit(OpCodes.Ldc_I4, 2);
-				ilcursor.Index += 2; //removed instruction doesn't count so we only skip 2
-				ilcursor.Emit(OpCodes.Ldc_I4, 1);
-				ilcursor.Emit(OpCodes.Add);
+				if (ilcursor.TryGotoNext(x => x.MatchStfld<VoidLightningOrb>("totalStrikes")))
+				{
+					ilcursor.Emit(OpCodes.Ldarg_1);
+					ilcursor.EmitDelegate<Func<int, DamageInfo, int>>((orig, info) =>
+					{
+						var count = info.attacker?.GetComponent<CharacterBody>()?.inventory.GetItemCount(DLC1Content.Items.ChainLightningVoid) - 1;
+						return 3 + (int)count * 2;
+					});
+				}
 			};
 
 			string desc = string.Format("<style=cIsDamage>20%</style> chance to fire <style=cIsDamage>lightning</style> for <style=cIsDamage>60%</style> TOTAL damage up to <style=cIsDamage>3</style> <style=cStack>(+2 per stack)</style> times. <style=cIsVoid>Corrupts all Ukuleles</style>.");

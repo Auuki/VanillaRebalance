@@ -19,15 +19,17 @@ namespace VanillaRebalance.Items
 			IL.RoR2.EquipmentSlot.FireTeamWarCry += (il) =>
 			{
 				ILCursor ilcursor = new(il);
-				ilcursor.GotoNext(
-					x => x.MatchLdcR4(7f)
-					);
-				ilcursor.Next.Operand = 8f;
+				if (ilcursor.TryGotoNext(MoveType.Before,
+					x => x.MatchLdcR4(7f)))
+				{
+					ilcursor.Next.Operand = 8f;
+				}
 
-				ilcursor.GotoNext(
-					x => x.MatchLdcR4(7f)
-					);
-				ilcursor.Next.Operand = 8f;
+				if (ilcursor.TryGotoNext(MoveType.Before,
+					x => x.MatchLdcR4(7f)))
+				{
+					ilcursor.Next.Operand = 8f;
+				}
 			};
 
 			var GoragsOpus = Addressables.LoadAssetAsync<EquipmentDef>("RoR2/Base/TeamWarCry/TeamWarCry.asset").WaitForCompletion();

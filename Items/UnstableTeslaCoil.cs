@@ -19,10 +19,11 @@ namespace VanillaRebalance.Items
 			IL.RoR2.Items.ShockNearbyBodyBehavior.FixedUpdate += (il) =>
 			{
 				ILCursor ilcursor = new(il);
-				ilcursor.GotoNext(
-					x => x.MatchLdcR4(35f)
-					);
-				ilcursor.Next.Operand = 32f;
+				if (ilcursor.TryGotoNext(MoveType.Before,
+					x => x.MatchLdcR4(35f)))
+				{
+					ilcursor.Next.Operand = 32f;
+				}
 			};
 
 			On.RoR2.ItemCatalog.Init += (orig) =>

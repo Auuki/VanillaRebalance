@@ -2,6 +2,7 @@
 using Mono.Cecil.Cil;
 using MonoMod.Cil;
 using R2API;
+using RoR2;
 using RoR2.Projectile;
 using System;
 using UnityEngine;
@@ -21,26 +22,30 @@ namespace VanillaRebalance.Items
 			IL.RoR2.FireworkLauncher.FireMissile += (il) =>
 			{
 				ILCursor ilcursor = new(il);
-				ilcursor.GotoNext(
-					x => ILPatternMatchingExt.MatchLdfld(x, "RoR2.FireworkLauncher", "damageCoefficient")
-					);
-				ilcursor.Index++;
-				ilcursor.Emit(OpCodes.Ldc_R4, 0.6f);
-				ilcursor.Emit(OpCodes.Add);
+				if (ilcursor.TryGotoNext(MoveType.After,
+					x => x.MatchLdfld("RoR2.FireworkLauncher", "damageCoefficient")
+					))
+				{
+					ilcursor.Emit(OpCodes.Ldc_R4, 0.6f);
+					ilcursor.Emit(OpCodes.Add);
+				}
 			};
 
 			IL.RoR2.GlobalEventManager.OnInteractionBegin += (il) =>
 			{
 				ILCursor ilcursor = new(il);
-				ilcursor.GotoNext(
-					x => x.MatchStloc(9)
-					);
-				ilcursor.Index++;
-				ilcursor.Remove();
-				ilcursor.Emit(OpCodes.Ldc_I4, 0);
-				ilcursor.Index++; //removed instruction doesn't count so we only skip 1
-				ilcursor.Remove();
-				ilcursor.Emit(OpCodes.Ldc_I4, 5);
+				if (ilcursor.TryGotoNext(MoveType.After,
+					x => x.MatchMul(),
+					x => x.MatchAdd()
+					))
+				{
+					ilcursor.Emit(OpCodes.Ldarg_1);
+					ilcursor.EmitDelegate<Func<int, GlobalEventManager, int>>((orig, info) =>
+					{
+						var count = info?.GetComponent<CharacterBody>()?.inventory.GetItemCount(RoR2Content.Items.Firework);
+						return (int)count * 5;
+					});
+				}
 			};
 
 			var BundleOfFireworks = Addressables.LoadAssetAsync<GameObject>("RoR2/Base/Firework/FireworkProjectile.prefab").WaitForCompletion();

@@ -17,15 +17,17 @@ namespace VanillaRebalance.Items
 			IL.RoR2.CharacterBody.RecalculateStats += (il) =>
 			{
 				ILCursor ilcursor = new(il);
-				ilcursor.GotoNext(
-					x => x.MatchLdcR4(40f)
-					);
-				ilcursor.Next.Operand = 50f;
+				if (ilcursor.TryGotoNext(MoveType.Before,
+					x => x.MatchLdcR4(40f)))
+				{
+					ilcursor.Next.Operand = 50f;
+				}
 
-				ilcursor.GotoNext(
-					x => x.MatchLdcR4(1.6f)
-					);
-				ilcursor.Next.Operand = 2f;
+				if (ilcursor.TryGotoNext(MoveType.Before,
+					x => x.MatchLdcR4(1.6f)))
+				{
+					ilcursor.Next.Operand = 2f;
+				}
 			};
 
 

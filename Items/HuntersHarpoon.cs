@@ -2,6 +2,7 @@
 using Mono.Cecil.Cil;
 using MonoMod.Cil;
 using R2API;
+using RoR2;
 using System;
 
 namespace VanillaRebalance.Items
@@ -15,18 +16,32 @@ namespace VanillaRebalance.Items
 
 		public override void Load()
 		{
+			IL.RoR2.CharacterBody.RecalculateStats += (il) =>
+			{
+				ILCursor ilcursor = new(il);
+				if (ilcursor.TryGotoNext(MoveType.Before,
+					x => x.MatchLdcR4(0.25f),
+					x => x.MatchLdarg(0)))
+				{
+					ilcursor.Next.Operand = 0.2f;
+				}
+			};
 			IL.RoR2.GlobalEventManager.OnCharacterDeath += (il) =>
 			{
 				ILCursor ilcursor = new(il);
-				ilcursor.GotoNext(
-					x => x.MatchLdcI4(5)
-					);
-				ilcursor.Remove();
-				ilcursor.Emit(OpCodes.Ldc_I4, 4);
-				ilcursor.Index++;
-				ilcursor.Next.Operand = 1.5f;
-				ilcursor.Index += 3;
-				ilcursor.Next.Operand = 0.75f;
+				if (ilcursor.TryGotoNext(MoveType.After,
+					x => x.MatchLdcR4(0.5f),
+					x => x.MatchMul(),
+					x => x.MatchAdd()
+					))
+				{
+					ilcursor.Emit(OpCodes.Ldarg_1);
+					ilcursor.EmitDelegate<Func<float, DamageReport, float>>((orig, info) =>
+					{
+						var count = info.attacker?.GetComponent<CharacterBody>()?.inventory.GetItemCount(DLC1Content.Items.MoveSpeedOnKill) - 1;
+						return 1.5f + (float)count * 0.75f;
+					});
+				}
 			};
 
 			string desc = string.Format("Killing an enemy increases <style=cIsUtility>movement speed</style> by <style=cIsUtility>100%</style>, fading over <style=cIsUtility>1.5</style> <style=cStack>(+0.75 per stack)</style> seconds.");

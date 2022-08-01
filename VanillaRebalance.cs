@@ -27,7 +27,7 @@ namespace VanillaRebalance
 		public const string PluginGUID = PluginAuthor + "." + PluginName;
 		public const string PluginAuthor = "Hayaku";
 		public const string PluginName = "VanillaRebalance";
-		public const string PluginVersion = "1.0.8";
+		public const string PluginVersion = "1.0.9";
 
 		//The Awake() method is run at the very start when the game is initialized.
 		public void Awake()

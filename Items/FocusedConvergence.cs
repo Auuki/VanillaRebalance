@@ -2,6 +2,7 @@
 using Mono.Cecil.Cil;
 using MonoMod.Cil;
 using R2API;
+using RoR2;
 using System;
 
 namespace VanillaRebalance.Items
@@ -18,11 +19,16 @@ namespace VanillaRebalance.Items
 			IL.RoR2.HoldoutZoneController.FocusConvergenceController.ApplyRate += (il) =>
 			{
 				ILCursor ilcursor = new(il);
-				ilcursor.GotoNext(
-					x => ILPatternMatchingExt.MatchLdsfld(x, "RoR2.HoldoutZoneController/FocusConvergenceController", "convergenceChargeRateBonus")
-					);
-				ilcursor.Remove();
-				ilcursor.Emit(OpCodes.Ldc_R4, 0.33f);
+				if (ilcursor.TryGotoNext(MoveType.After,
+					x => x.MatchLdsfld("RoR2.HoldoutZoneController/FocusConvergenceController", "convergenceChargeRateBonus")
+					))
+				{
+					ilcursor.Emit(OpCodes.Ldarg_0);
+					ilcursor.EmitDelegate<Func<float, HoldoutZoneController, float>>((orig, info) =>
+					{
+						return 0.33f;
+					});
+				}
 			};
 
 			string desc = string.Format("Teleporters charge <style=cIsUtility>25%</style> <style=cStack>(+25% per stack)</style> <style=cIsUtility>faster</style>, but the size of the Teleporter zone is <style=cIsHealth>50%</style> <style=cStack>(-50% per stack)</style> smaller.");

@@ -19,10 +19,11 @@ namespace VanillaRebalance.Items
 			IL.RoR2.HealthComponent.TakeDamage += (il) =>
 			{
 				ILCursor ilcursor = new(il);
-				ilcursor.GotoNext(
-					x => x.MatchLdcR4(169f)
-					);
-				ilcursor.Next.Operand = 144f;
+				if (ilcursor.TryGotoNext(MoveType.Before,
+					x => x.MatchLdcR4(169f)))
+				{
+					ilcursor.Next.Operand = 144f;
+				}
 			};
 
 			var FocusCrystal = Addressables.LoadAssetAsync<GameObject>("RoR2/Base/NearbyDamageBonus/NearbyDamageBonusIndicator.prefab").WaitForCompletion();

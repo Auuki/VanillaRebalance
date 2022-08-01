@@ -1,7 +1,9 @@
 ﻿using BepInEx.Configuration;
+using EntityStates;
 using Mono.Cecil.Cil;
 using MonoMod.Cil;
 using R2API;
+using RoR2;
 using System;
 
 namespace VanillaRebalance.Items
@@ -18,13 +20,17 @@ namespace VanillaRebalance.Items
 			IL.EntityStates.GenericCharacterMain.ProcessJump += (il) =>
 			{
 				ILCursor ilcursor = new(il);
-				ilcursor.GotoNext(
-					x => x.MatchLdcR4(10f)
-					);
-				ilcursor.Next.Operand = 7f;
-				ilcursor.Index += 4;
-				ilcursor.Emit(OpCodes.Ldc_R4, 7f);
-				ilcursor.Emit(OpCodes.Add);
+				if (ilcursor.TryGotoNext(MoveType.After,
+					x => x.MatchConvR4(),
+					x => x.MatchMul()))
+				{
+					ilcursor.Emit(OpCodes.Ldarg_0);
+					ilcursor.EmitDelegate<Func<float, GenericCharacterMain, float>>((orig, info) =>
+					{
+						var count = info?.GetComponent<CharacterBody>()?.inventory.GetItemCount(RoR2Content.Items.JumpBoost) - 1;
+						return 14f + (float)count * 7f;
+					});
+				}
 			};
 
 			string desc = string.Format("<style=cIsUtility>Jumping</style> while <style=cIsUtility>sprinting</style> boosts you forward by <style=cIsUtility>14m</style> <style=cStack>(+7m per stack)</style>.");

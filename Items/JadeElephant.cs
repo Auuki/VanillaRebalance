@@ -19,19 +19,21 @@ namespace VanillaRebalance.Items
 			IL.RoR2.EquipmentSlot.FireGainArmor += (il) =>
 			{
 				ILCursor ilcursor = new(il);
-				ilcursor.GotoNext(
-					x => x.MatchLdcR4(5f)
-					);
-				ilcursor.Next.Operand = 8f;
+				if (ilcursor.TryGotoNext(MoveType.Before,
+					x => x.MatchLdcR4(5f)))
+				{
+					ilcursor.Next.Operand = 8f;
+				}
 			};
 
 			IL.RoR2.CharacterBody.RecalculateStats += (il) =>
 			{
 				ILCursor ilcursor = new(il);
-				ilcursor.GotoNext(
-					x => x.MatchLdcR4(500f)
-					);
-				ilcursor.Next.Operand = 200f;
+				if (ilcursor.TryGotoNext(MoveType.Before,
+					x => x.MatchLdcR4(500f)))
+				{
+					ilcursor.Next.Operand = 200f;
+				}
 			};
 
 			var JadeElephant = Addressables.LoadAssetAsync<EquipmentDef>("RoR2/Base/GainArmor/GainArmor.asset").WaitForCompletion();

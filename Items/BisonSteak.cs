@@ -17,10 +17,11 @@ namespace VanillaRebalance.Items
 			IL.RoR2.CharacterBody.RecalculateStats += (il) =>
 			{
 				ILCursor ilcursor = new(il);
-				ilcursor.GotoNext(
-					x => x.MatchLdcR4(25f)
-					);
-				ilcursor.Next.Operand = 30f;
+				if (ilcursor.TryGotoNext(MoveType.Before,
+					x => x.MatchLdcR4(25f)))
+				{
+					ilcursor.Next.Operand = 30f;
+				}
 			};
 
 			string pickup = string.Format("Gain <style=cIsHealing>30</style> max health.");
